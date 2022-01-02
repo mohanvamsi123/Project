@@ -1,0 +1,23 @@
+<app-toolbar>Customers
+    <button mat-button color="primary" role="button-operate" (click)="customer_action('add','',true)">New Customer</button>    
+</app-toolbar>
+
+<mat-list>
+    <div mat-subheader>Users</div>
+    <mat-list-item *ngFor="let customers of customersList">
+      <mat-icon mat-list-icon>person_outline</mat-icon>
+      <div mat-line>{{customers.firstName | titlecase}}</div>
+      <div mat-line>+91 {{customers.phone_no}} </div>
+      <button mat-icon-button matTooltip="view profile" (click)="customer_action('view',customers,false)">
+        <mat-icon>visibility</mat-icon>
+     </button>
+     <!--
+      <button mat-icon-button matTooltip="edit profile" (click)="customer_action('edit',customers,true)">
+        <mat-icon>edit</mat-icon>
+     </button>
+     -->
+     <button mat-icon-button matTooltip="delete profile">
+        <mat-icon>delete_outline</mat-icon>
+     </button>
+    </mat-list-item>
+</mat-list>

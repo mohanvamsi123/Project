@@ -1,0 +1,31 @@
+<app-toolbar>Items
+    <button mat-button color="primary" role="button-operate">New Items</button>
+</app-toolbar>
+
+
+
+<div class="row">
+    <div class="col-md-2" style="margin:10px;">
+
+        <form [formGroup]="addItem">
+            
+              
+          
+              <p>
+                  <mat-form-field appearance="legacy">
+                    <mat-label>Item Name</mat-label>
+                    <input matInput formControlName="item_Name">
+                    <mat-icon matSuffix>local_mall</mat-icon>
+                    <mat-hint>Name of the item</mat-hint>
+                    <mat-error *ngIf="addItem.controls['item_Name'].hasError('required')">Please enter name of item</mat-error>
+                    <mat-error *ngIf="addItem.controls['item_Name'].hasError('minlength')">Item Name should be minimum length 2</mat-error>
+                  </mat-form-field>
+                </p>
+
+                <button mat-flat-button (click)="submit()" type="submit" [disabled]="!addItem.valid">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-6" style="margin:10px">
+        <app-item-list></app-item-list>
+    </div>
+</div>

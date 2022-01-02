@@ -1,0 +1,19 @@
+<mat-sidenav-container class="example-container" >
+    <mat-sidenav mode="side" opened >
+        <mat-nav-list>
+            <mat-list-item routerLinkActive="active" routerLink="customers" >
+               <a matLine >Customers</a>
+               <mat-divider></mat-divider>
+            </mat-list-item>
+            <mat-list-item routerLinkActive="active" routerLink="items">
+                <a matLine  > Items</a>
+                <mat-divider></mat-divider>
+             </mat-list-item>
+            
+          </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  

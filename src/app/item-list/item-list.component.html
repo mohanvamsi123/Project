@@ -1,0 +1,16 @@
+<mat-list>
+    <div mat-subheader>Items</div>
+    <mat-list-item >
+      <mat-icon mat-list-icon>local_florist</mat-icon>
+      <div mat-line>Rose</div>
+      <div mat-line>Created on: 29 Jan 1998 </div>
+      <mat-slide-toggle color="primary" (change)="itemstatus($event,'rose')"></mat-slide-toggle>
+
+    </mat-list-item>
+    <mat-list-item >
+        <mat-icon mat-list-icon>local_florist</mat-icon>
+        <div mat-line>Gerebra</div>
+        <div mat-line>Created on: 29 Jan 1998 </div>
+        <mat-slide-toggle color="primary" (change)="itemstatus($event,'gerebra')"></mat-slide-toggle>
+      </mat-list-item>
+  </mat-list>
