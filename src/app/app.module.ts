@@ -22,6 +22,10 @@ import { ApiInterceptor } from './interceptor/api.interceptor';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ItemListComponent } from './item-list/item-list.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { RegSalesComponent } from './reg-sales/reg-sales.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -32,12 +36,16 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     ItemsComponent,
     ToolbarComponent,
     CustomersComponent,
-    ItemListComponent
+    ItemListComponent,
+    RegSalesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatNativeDateModule,
     MatSlideToggleModule,
+    MatSelectModule,
+    MatDatepickerModule,
     BrowserAnimationsModule,
     MatSidenavModule,
     MatToolbarModule,

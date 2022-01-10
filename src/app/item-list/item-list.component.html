@@ -1,16 +1,18 @@
 <mat-list>
     <div mat-subheader>Items</div>
-    <mat-list-item >
+    <mat-list-item *ngFor="let item of itemsArray">
       <mat-icon mat-list-icon>local_florist</mat-icon>
-      <div mat-line>Rose</div>
-      <div mat-line>Created on: 29 Jan 1998 </div>
-      <mat-slide-toggle color="primary" (change)="itemstatus($event,'rose')"></mat-slide-toggle>
+      <div mat-line>{{item?.item_Name}}</div>
+      <div mat-line>Created on: {{item?.createdAt | date:'longDate'}} </div>
+      <mat-slide-toggle color="primary" (change)="itemstatus(item)" [checked]="item?.item_Status"></mat-slide-toggle>
 
     </mat-list-item>
+    <!--
     <mat-list-item >
         <mat-icon mat-list-icon>local_florist</mat-icon>
         <div mat-line>Gerebra</div>
         <div mat-line>Created on: 29 Jan 1998 </div>
         <mat-slide-toggle color="primary" (change)="itemstatus($event,'gerebra')"></mat-slide-toggle>
       </mat-list-item>
+      -->
   </mat-list>

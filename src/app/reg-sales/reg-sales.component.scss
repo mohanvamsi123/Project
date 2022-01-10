@@ -1,0 +1,23 @@
+.example-container {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: #eee;
+  }
+
+  mat-sidenav{
+      width: 300px;
+  }
+
+  .example-sidenav {
+    padding: 30px;
+    width:250px;
+  }
+
+  mat-form-field{
+    width:100%;
+  }
+  

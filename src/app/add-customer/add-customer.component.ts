@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { CustomersComponent } from '../popup/customers/customers.component';
 import {CustomersService} from '../services/customers.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-customer',
@@ -10,7 +11,7 @@ import {CustomersService} from '../services/customers.service';
 })
 export class AddCustomerComponent implements OnInit {
   customersList:any=[];
-  constructor(public dialog: MatDialog,private customeraction:CustomersService) { }
+  constructor(public dialog: MatDialog,private customeraction:CustomersService,private router: Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getCustomers();
@@ -31,6 +32,10 @@ export class AddCustomerComponent implements OnInit {
       }
     });
     
+  }
+
+  navigate = (data:any) => {
+    this.router.navigate(['/customers/sales'], { queryParams: { userid:data.u_id } ,relativeTo:this.route});
   }
 
   getCustomers = () => {

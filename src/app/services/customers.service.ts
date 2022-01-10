@@ -24,8 +24,19 @@ export class CustomersService {
 
 
   postItems(data:any):Observable<any>{
+    console.log(data);
     return this.http.post(`${environment.api_url}/item/controller/postDetails`,JSON.stringify(data));
   }
+
+  getItems():Observable<any>{
+    return this.http.get(`${environment.api_url}/item/controller/getDetails`);
+  }
+
+  updateStatus(id:number):Observable<any>{
+    return this.http.put(`${environment.api_url}/item/controller/putDetails/${id}`,JSON.stringify(null));
+  }
+
+
 
   
   createObject(data:any){

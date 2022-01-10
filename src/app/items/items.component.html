@@ -1,5 +1,5 @@
 <app-toolbar>Items
-    <button mat-button color="primary" role="button-operate">New Items</button>
+    <!--<button mat-button color="primary" role="button-operate">New Items</button>-->
 </app-toolbar>
 
 
@@ -26,6 +26,6 @@
         </form>
     </div>
     <div class="col-md-6" style="margin:10px">
-        <app-item-list></app-item-list>
+        <app-item-list [itemsArray]="itemDetails"></app-item-list>
     </div>
 </div>
