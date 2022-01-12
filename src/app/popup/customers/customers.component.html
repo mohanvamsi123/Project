@@ -61,7 +61,7 @@
           <mat-list-item>
             <mat-icon mat-list-icon>person_outline</mat-icon>
             <div mat-line>Name</div>
-            <div mat-line>{{profile?.firstName}}</div>
+            <div mat-line>{{profile?.firstName | titlecase}}</div>
             
           </mat-list-item>
           <mat-list-item>
@@ -73,13 +73,13 @@
           <mat-list-item>
             <mat-icon mat-list-icon>store</mat-icon>
             <div mat-line>Shop Name</div>
-            <div mat-line>{{profile?.address?.shopname}}</div>
+            <div mat-line>{{profile?.address?.shopname | uppercase}}</div>
             
           </mat-list-item>
           <mat-list-item>
             <mat-icon mat-list-icon>location_city</mat-icon>
             <div mat-line>City</div>
-            <div mat-line>{{profile?.address?.city}}</div>
+            <div mat-line>{{profile?.address?.city | titlecase}}</div>
             
           </mat-list-item>
       </mat-list>
