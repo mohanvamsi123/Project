@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import {formatDate} from '@angular/common';
 import { CustomersService} from '../services/customers.service';
+import { GetItems } from '../interface/get-items';
 
 
 @Component({
@@ -24,16 +25,16 @@ export class ItemsComponent implements OnInit {
 
   submit(){
    const output=this.addItem.value;
-   output['createdAt']=formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
+   //output['createdAt']=formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
    output['item_Status']=true;
-   output['updatedAt']=formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
+   //output['updatedAt']=formatDate(new Date(), 'yyyy-MM-dd', 'en-US');
    this.service.postItems(output).subscribe((data:any)=>{
      console.log(data);
      this.getItems();
    })
   }
   getItems(){
-    this.service.getItems().subscribe((data:any)=>{
+    this.service.getItems().subscribe((data:GetItems[])=>{
       console.log(data);
       this.itemDetails=[...data];
       this.addItem.reset();

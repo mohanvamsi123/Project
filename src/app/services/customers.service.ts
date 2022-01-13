@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import {environment} from 'src/environments/environment';
+import { GetItems } from '../interface/get-items';
+import { PostItems } from '../interface/post-items';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +25,12 @@ export class CustomersService {
   }
 
 
-  postItems(data:any):Observable<any>{
-    console.log(data);
+  postItems(data:PostItems):Observable<any>{
     return this.http.post(`${environment.api_url}/item/controller/postDetails`,JSON.stringify(data));
   }
 
-  getItems():Observable<any>{
-    return this.http.get(`${environment.api_url}/item/controller/getDetails`);
+  getItems():Observable<GetItems[]>{
+    return this.http.get<GetItems[]>(`${environment.api_url}/item/controller/getDetails`);
   }
 
   updateStatus(id:number):Observable<any>{

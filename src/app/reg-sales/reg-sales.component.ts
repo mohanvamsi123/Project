@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { GetItems } from '../interface/get-items';
 import { CustomersService } from '../services/customers.service';
 
 @Component({
@@ -36,7 +37,7 @@ export class RegSalesComponent implements OnInit {
 
 
   getItems(){
-    this.service.getItems().pipe(map((data:any)=>data.filter((output:any)=>output.item_Status===true))).subscribe((data:any)=>{
+    this.service.getItems().pipe(map((data:GetItems[])=>data.filter((output:GetItems)=>output.item_Status===true))).subscribe((data:any)=>{
       console.log(data);
       this.items=data;
     })

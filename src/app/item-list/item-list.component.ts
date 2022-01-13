@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { GetItems } from '../interface/get-items';
 import {CustomersService} from '../services/customers.service';
 
 @Component({
@@ -30,7 +31,7 @@ set itemsArray(value:any){
   }
 
   getItems(){
-    this.service.getItems().subscribe((data:any)=>{
+    this.service.getItems().subscribe((data:GetItems[])=>{
       //console.log(data);
       this.itemsArray=data;
     })
