@@ -1,14 +1,19 @@
 
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav" mode="over" position="end">
+    <mat-drawer #drawer class="example-sidenav" mode="over" position="end" disableClose id="salesNav">
 
-
+<div style="display: flex;justify-content: space-between;">
       <h2 class="mat-title">Add Sales</h2>
+      <button mat-icon-button aria-label="close the sidenavigation" style="margin-top: -5px;" (click)="drawer.close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </div>
+      <h3 class="mat-subheading-2" style="background-color: lightgray;border-radius: 3%;"><mat-icon style="display: inline-flex;vertical-align: middle;">perm_identity</mat-icon><span>&nbsp;{{this.userdetails?.firstName | titlecase}}</span></h3>
     
         <form [formGroup]="salesForm">
           <mat-form-field >
             <mat-label>Date</mat-label>
-            <input matInput [matDatepicker]="picker1" formControlName="date">
+            <input matInput [matDatepicker]="picker1" formControlName="createdAt">
             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
             <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
@@ -16,7 +21,7 @@
           <mat-form-field>
             <mat-label>Item</mat-label>
             <mat-select formControlName="item">
-              <mat-option [value]="item.item_Name" *ngFor="let item of items">{{item.item_Name}}</mat-option>
+              <mat-option [value]="item.item_Id" *ngFor="let item of items">{{item.item_Name}}</mat-option>
 
             </mat-select>
             <mat-error *ngIf="salesForm.controls['item'].hasError('required')">Please select item name</mat-error>
@@ -25,33 +30,37 @@
 
           <mat-form-field >
             <mat-label>Quantity</mat-label>
-            <input matInput formControlName="quantity" type="number" placeholder="0">
-            <mat-error *ngIf="salesForm.controls['quantity'].hasError('required')">Please enter quantity</mat-error>
-            <mat-error *ngIf="salesForm.controls['quantity'].hasError('min') ">Please enter value greater than 1</mat-error>
+            <input matInput formControlName="item_Qty" type="number" placeholder="0">
+            <mat-error *ngIf="salesForm.controls['item_Qty'].hasError('required')">Please enter quantity</mat-error>
+            <mat-error *ngIf="salesForm.controls['item_Qty'].hasError('min') ">Please enter value greater than 1</mat-error>
 
           </mat-form-field>
 
           <mat-form-field >
             <mat-label>Price</mat-label>
-            <input matInput formControlName="price" type="number" placeholder="0">
+            <input matInput formControlName="item_Price" type="number" placeholder="0">
             <span matPrefix>&#x20b9;&nbsp;</span>
             <span matSuffix>.00</span>
-            <mat-error *ngIf="salesForm.controls['price'].hasError('required')">Please enter price</mat-error>
-            <mat-error *ngIf="salesForm.controls['price'].hasError('min') ">Please enter value greater than 1</mat-error>
+            <mat-error *ngIf="salesForm.controls['item_Price'].hasError('required')">Please enter price</mat-error>
+            <mat-error *ngIf="salesForm.controls['item_Price'].hasError('min') ">Please enter value greater than 1</mat-error>
 
           </mat-form-field>
-          <button mat-flat-button  style="background-color:#DCDCDC;" type="submit" [disabled]="!salesForm.valid">Submit</button>
+          <button mat-flat-button  style="background-color:#DCDCDC;" type="submit" [disabled]="!salesForm.valid" (click)="submit(drawer)">Submit</button>
 
         </form>
 
     </mat-drawer>
   
     <div class="example-sidenav-content">
-        <app-toolbar>Customers
-            <button mat-button color="primary" role="button-operate" (click)="drawer.toggle()">Add Sales</button>    
+        <app-toolbar>Sales
+            <button mat-button color="primary" role="button-operate" (click)="drawer.open()">Add Sales</button>    
         </app-toolbar>
       
-      <p>reg-sales works!</p>
+      <app-sales-table
+       [columnHeaders]="columnHeaderArray"
+       [columnsData]="columnsDataArray"
+       (itemsList)="generateInvoice($event)"
+      ></app-sales-table>
     </div>
   
   </mat-drawer-container>

@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 import { CustomersComponent } from '../popup/customers/customers.component';
 import {CustomersService} from '../services/customers.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import { GetCustomer } from '../interface/get-customer';
 
 @Component({
   selector: 'app-add-customer',
@@ -39,7 +40,7 @@ export class AddCustomerComponent implements OnInit {
   }
 
   getCustomers = () => {
-    this.customeraction.getCustomer().subscribe((data:any)=>{
+    this.customeraction.getCustomer().subscribe((data:GetCustomer[] | GetCustomer)=>{
       console.log(data);
       this.customersList=data;
 

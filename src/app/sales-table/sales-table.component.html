@@ -1,0 +1,50 @@
+<table mat-table [dataSource]="dataSource" recycleRows fixedLayout>
+  <ng-container matColumnDef="{{columnHeaders[0]}}">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="{{columnHeaders[1]}}">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let element"> {{element.createdAt|date:'medium':'IST'}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="{{columnHeaders[2]}}">
+    <th mat-header-cell *matHeaderCellDef> Item </th>
+    <td mat-cell *matCellDef="let element"> {{element.i_name | titlecase}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="{{columnHeaders[3]}}">
+    <th mat-header-cell *matHeaderCellDef> Quantity </th>
+    <td mat-cell *matCellDef="let element"> {{element.qty}} </td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="{{columnHeaders[4]}}">
+    <th mat-header-cell *matHeaderCellDef> Unit Price </th>
+    <td mat-cell *matCellDef="let element"> {{element.price |currency:"INR":"symbol"}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="{{columnHeaders[5]}}">
+    <th mat-header-cell *matHeaderCellDef> Total Price </th>
+    <td mat-cell *matCellDef="let element">
+      <div class="mat-body-strong" style="color: red;">
+        {{element.qty*element.price |currency:"INR":"symbol"}} </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnHeaders"></tr>
+  <tr mat-row matRipple *matRowDef="let row; columns: columnHeaders;"></tr>
+</table>
+
+<button mat-button (click)="submit()" *ngIf="buttonStatus">Submit</button>

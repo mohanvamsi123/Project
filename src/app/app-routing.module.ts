@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddCustomerComponent } from '../app/add-customer/add-customer.component';
 import { ItemsComponent } from './items/items.component';
 import { RegSalesComponent } from './reg-sales/reg-sales.component';
+import { GetProfileResolver } from './resolver/get-profile.resolver';
 
 const routes: Routes = [
   {
@@ -20,7 +21,11 @@ const routes: Routes = [
 
   {
     path: 'customers/sales',
-    component: RegSalesComponent
+    component: RegSalesComponent,
+    resolve:{
+      getprofile:GetProfileResolver
+
+    } 
   }
 ];
 
