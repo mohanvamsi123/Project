@@ -68,6 +68,12 @@ export class RegSalesComponent implements OnInit {
   }
 
   generateInvoice(itemsArray:any){
-    
+    const profile:string=this.userdetails.firstName+"\n"+this.userdetails.address.shopname+"\n"+this.userdetails.address.city+"\n"+
+    "Andhra Pradesh\nIndia-522002";
+
+    this.service.getInvoice(profile,itemsArray).subscribe((data:any)=>{
+      console.log(data);
+    })
   }
 }
+

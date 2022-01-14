@@ -4,7 +4,7 @@ export interface GetCustomer {
     phone_no: number;
     address: Address;
     u_id: number;
-    createdDate?: null;
+    createdDate?: Date;
 }
 export interface Address {
     city: string;

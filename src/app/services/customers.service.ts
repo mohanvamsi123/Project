@@ -12,6 +12,26 @@ import { PostSales } from '../interface/post-sales';
   providedIn: 'root'
 })
 export class CustomersService {
+  invoicestring={
+    "from":"SVF Flower Stall\nRaitu Bazar\nNear RTC Bust Stand\nGuntur\nAndhra Pradesh\nIndia-522002",
+    "to":"",
+    "currency":"INR",
+    "shipping_title":"Previous Balance",
+    "items": [
+  ],
+  "custom_fields": [
+    {
+      "name": "Account Number",
+      "value": "CUST-456"
+    }
+  ],
+  "fields": {
+    "discounts": false,
+    "shipping": true
+  },
+  "shipping": 15,
+  "notes": "Thanks for being an awesome customer!"
+}
 
   constructor(private http: HttpClient) { }
 
@@ -51,6 +71,13 @@ export class CustomersService {
 
   getSales(userid:number): Observable<GetSales[]> {
     return this.http.get<GetSales[]>(`${environment.api_url}/price/controller/getDetails/${userid}`);
+  }
+
+  getInvoice(customerdetails:string,items:[]):Observable<any>{
+    this.invoicestring.items=items;
+    this.invoicestring.to=customerdetails;
+    console.log(this.invoicestring);
+    return this.http.post('https://invoice-generator.com/',JSON.stringify(this.invoicestring));
   }
 
 
