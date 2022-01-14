@@ -14,7 +14,7 @@ import { GetSales } from '../interface/get-sales';
 export class SalesTableComponent implements OnInit,OnChanges,AfterViewChecked{
   @Input() columnHeaders:string[]=[];
   @Input() columnsData:GetSales[]=[];
-  @Output() itemsList:EventEmitter<Array<{name:string,cost:number,quantity:number}>>=new EventEmitter<Array<{name:string,cost:number,quantity:number}>>();
+  @Output() itemsList:EventEmitter<Array<{name:string,unit_cost:number,quantity:number}>>=new EventEmitter<Array<{name:string,unit_cost:number,quantity:number}>>();
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
   //dataSource:GetSales[] = [];
   dataSource=new MatTableDataSource<GetSales>([]);
@@ -73,7 +73,7 @@ export class SalesTableComponent implements OnInit,OnChanges,AfterViewChecked{
      return {
         "name":data.i_name,
         "quantity":data.qty,
-        "cost":data.price,
+        "unit_cost":data.price,
      }
    })
    this.itemsList.emit(itemsData);
