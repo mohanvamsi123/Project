@@ -29,6 +29,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { SalesTableComponent } from './sales-table/sales-table.component';
 import { MatTableModule } from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { InvoiceComponent } from './invoice/invoice.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     CustomersComponent,
     ItemListComponent,
     RegSalesComponent,
-    SalesTableComponent
+    SalesTableComponent,
+    InvoiceComponent
   ],
   imports: [
     BrowserModule,

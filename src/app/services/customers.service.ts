@@ -76,8 +76,8 @@ export class CustomersService {
   getInvoice(customerdetails:string,items:[]):Observable<any>{
     this.invoicestring.items=items;
     this.invoicestring.to=customerdetails;
-    console.log(this.invoicestring);
-    return this.http.post('https://invoice-generator.com/',JSON.stringify(this.invoicestring));
+    console.log(JSON.stringify(this.invoicestring));
+    return this.http.post('https://invoice-generator.com',JSON.stringify(this.invoicestring));
   }
 
 

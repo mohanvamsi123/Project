@@ -17,8 +17,10 @@ export class ApiInterceptor implements HttpInterceptor {
     request = request.clone({
       setHeaders: {
         "Content-Type": "application/json",
-        'Access-Control-Allow-Origin': '*'
-      }
+        'Access-Control-Allow-Origin': '*',
+        "Accept": "application/json",
+        
+         }
     });
     return next.handle(request)
       .pipe(catchError(err => {

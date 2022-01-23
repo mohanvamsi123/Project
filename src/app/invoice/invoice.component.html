@@ -1,0 +1,100 @@
+<div class="invoice-page">
+  <div class="heading">
+    <div>
+      <address class="address mat-body" id="to">
+        <span class="mat-body-strong">SVF Flower Stall</span><br />
+        Raitu Bazar<br />
+        Near RTC Bust Stand<br />
+        Guntur<br />
+        Andhra Pradesh<br />
+        India-522002
+      </address>
+
+      <address class="address mat-body" id="from" >
+        Bill To:<br />
+        <span class="mat-body-strong">Guru Mohan Vamsi Darisi</span><br />
+        Guntur<br />
+        Andhra Pradesh<br />
+        India-522002
+      </address>
+    </div>
+    <div>
+      <div style="text-align: end">
+        <h1 class="mat-display-1">INVOICE</h1>
+      </div>
+      <div id="balance-display">
+        <table class="mat-body">
+          <tr>
+            <td>Date:</td>
+            <td>{{"Jan 23,2022" | date}}</td>
+          </tr>
+          <tr>
+            <td>Account Number:</td>
+            <td>CUST-456</td>
+          </tr>
+          <tr class="mat-body-strong">
+            <td>Balance Due:</td>
+            <td>{{ 1000 | currency: "INR":"symbol" }}&nbsp;</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="body">
+    <table >
+      <tr >
+        <th>Date</th>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Rate</th>
+        <th>Amount</th>
+      </tr>
+      <tr class="mat-body">
+        <td>{{"Jan 23,2022" | date}}</td>
+        <td>Rose</td>
+        <td>10</td>
+        <td>{{ 100 | currency: "INR":"symbol" }}</td>
+        <td>{{ 1000 | currency: "INR":"symbol" }}</td>
+      </tr>
+      <tr class="mat-body">
+        <td>{{"Jan 23,2022" | date}}</td>
+        <td>Rose</td>
+        <td>10</td>
+        <td>{{ 100 | currency: "INR":"symbol" }}</td>
+        <td>{{ 1000 | currency: "INR":"symbol" }}</td>
+      </tr>
+      <tr class="mat-body">
+        <td>{{"Jan 23,2022" | date}}</td>
+        <td>Rose</td>
+        <td>10</td>
+        <td>{{ 100 | currency: "INR":"symbol" }}</td>
+        <td>{{ 1000 | currency: "INR":"symbol" }}</td>
+      </tr>
+      <tr class="mat-body">
+        <td>{{"Jan 23,2022" | date}}</td>
+        <td>Rose</td>
+        <td>10</td>
+        <td>{{ 100 | currency: "INR":"symbol" }}</td>
+        <td>{{ 1000 | currency: "INR":"symbol" }}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="ending mat-body">
+      <div>
+        <table>
+            <tr>
+              <td>Sub Total:</td>
+              <td>{{ 1000 | currency: "INR":"symbol" }}</td>
+            </tr>
+            <tr>
+              <td>Previous Balance:</td>
+              <td>{{ 0 | currency: "INR":"symbol" }}</td>
+            </tr>
+            <tr>
+              <td>Total:</td>
+              <td>{{ 1000 | currency: "INR":"symbol" }}</td>
+            </tr>
+          </table>
+      </div>
+  </div>
+</div>
