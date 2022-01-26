@@ -9,6 +9,8 @@ export interface GetCustomer {
 export interface Address {
     city: string;
     shopname: string;
+    state?:string;
+    country?:string;
 }
 
 

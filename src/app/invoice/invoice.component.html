@@ -10,12 +10,20 @@
         India-522002
       </address>
 
-      <address class="address mat-body" id="from" >
+      <address class="address mat-body" id="from">
         Bill To:<br />
-        <span class="mat-body-strong">Guru Mohan Vamsi Darisi</span><br />
-        Guntur<br />
-        Andhra Pradesh<br />
-        India-522002
+        <span class="mat-body-strong" *ngIf="from?.firstName"
+          >{{ from?.firstName }}<br
+        /></span>
+        <span *ngIf="from.address.shopname"
+          >{{ from.address.shopname }}<br
+        /></span>
+        <span *ngIf="from?.phone_no">+91 {{ from?.phone_no }}<br /></span>
+        <span *ngIf="from?.address?.city">{{ from?.address?.city }}<br /></span>
+        <span *ngIf="from?.address?.state"
+          >{{ from?.address?.state }}<br
+        /></span>
+        <span *ngIf="from?.address?.country">{{ from?.address?.country }}</span>
       </address>
     </div>
     <div>
@@ -25,76 +33,54 @@
       <div id="balance-display">
         <table class="mat-body">
           <tr>
-            <td>Date:</td>
-            <td>{{"Jan 23,2022" | date}}</td>
+            <td style="padding-left: 0px;text-align: end;">Date:</td>
+            <td>{{ todayDate | date }}</td>
           </tr>
-          <tr>
-            <td>Account Number:</td>
-            <td>CUST-456</td>
-          </tr>
-          <tr class="mat-body-strong">
+
+          <tr class="mat-body-strong" id="balance-due">
             <td>Balance Due:</td>
-            <td>{{ 1000 | currency: "INR":"symbol" }}&nbsp;</td>
+            <td style="text-align: end">
+              {{ totalPrice | currency: "INR":"symbol" }}&nbsp;
+            </td>
           </tr>
         </table>
       </div>
     </div>
   </div>
   <div class="body">
-    <table >
-      <tr >
+    <table>
+      <tr>
         <th>Date</th>
         <th>Item</th>
         <th>Quantity</th>
         <th>Rate</th>
         <th>Amount</th>
       </tr>
-      <tr class="mat-body">
-        <td>{{"Jan 23,2022" | date}}</td>
-        <td>Rose</td>
-        <td>10</td>
-        <td>{{ 100 | currency: "INR":"symbol" }}</td>
-        <td>{{ 1000 | currency: "INR":"symbol" }}</td>
+      <tr class="mat-body" *ngFor="let item of itemsList">
+        <td>{{ item.date | date }}</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.unit_cost | currency: "INR":"symbol" }}</td>
+        <td>{{ item.quantity * item.unit_cost | currency: "INR":"symbol" }}</td>
       </tr>
-      <tr class="mat-body">
-        <td>{{"Jan 23,2022" | date}}</td>
-        <td>Rose</td>
-        <td>10</td>
-        <td>{{ 100 | currency: "INR":"symbol" }}</td>
-        <td>{{ 1000 | currency: "INR":"symbol" }}</td>
-      </tr>
-      <tr class="mat-body">
-        <td>{{"Jan 23,2022" | date}}</td>
-        <td>Rose</td>
-        <td>10</td>
-        <td>{{ 100 | currency: "INR":"symbol" }}</td>
-        <td>{{ 1000 | currency: "INR":"symbol" }}</td>
-      </tr>
-      <tr class="mat-body">
-        <td>{{"Jan 23,2022" | date}}</td>
-        <td>Rose</td>
-        <td>10</td>
-        <td>{{ 100 | currency: "INR":"symbol" }}</td>
-        <td>{{ 1000 | currency: "INR":"symbol" }}</td>
-      </tr>
-    </table>
+      </table>
   </div>
   <div class="ending mat-body">
-      <div>
-        <table>
-            <tr>
-              <td>Sub Total:</td>
-              <td>{{ 1000 | currency: "INR":"symbol" }}</td>
-            </tr>
-            <tr>
-              <td>Previous Balance:</td>
-              <td>{{ 0 | currency: "INR":"symbol" }}</td>
-            </tr>
-            <tr>
-              <td>Total:</td>
-              <td>{{ 1000 | currency: "INR":"symbol" }}</td>
-            </tr>
-          </table>
-      </div>
+    <div>
+      <table>
+        <tr>
+          <td>Sub Total:</td>
+          <td>{{ totalPrice | currency: "INR":"symbol" }}</td>
+        </tr>
+        <tr>
+          <td>Previous Balance:</td>
+          <td>{{ 0 | currency: "INR":"symbol" }}</td>
+        </tr>
+        <tr>
+          <td>Total:</td>
+          <td>{{ totalPrice | currency: "INR":"symbol" }}</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>

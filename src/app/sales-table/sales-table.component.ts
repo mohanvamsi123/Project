@@ -71,6 +71,7 @@ export class SalesTableComponent implements OnInit,OnChanges,AfterViewChecked{
   submit(){
     const itemsData=this.selection.selected.map((data:GetSales)=>{
      return {
+       "date":data.createdAt,
         "name":data.i_name,
         "quantity":data.qty,
         "unit_cost":data.price,

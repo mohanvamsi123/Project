@@ -1,12 +1,14 @@
 import { outputAst } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { MatDrawer } from '@angular/material/sidenav';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { GetCustomer } from '../interface/get-customer';
 import { GetItems } from '../interface/get-items';
 import { GetSales } from '../interface/get-sales';
+import { InvoicePopupComponent } from '../invoice-popup/invoice-popup.component';
 import { CustomersService } from '../services/customers.service';
 
 @Component({
@@ -21,7 +23,7 @@ export class RegSalesComponent implements OnInit {
   columnHeaderArray:string[]=["select","Date","Item","Quantity","Unit Price","Total Price"];
   columnsDataArray:GetSales[]=[];
 
-  constructor(private route: ActivatedRoute,private fb:FormBuilder,private service:CustomersService) { 
+  constructor(public dialog: MatDialog,private route: ActivatedRoute,private fb:FormBuilder,private service:CustomersService) { 
     /*this.route.queryParams.subscribe(params => {
       this.param1 = params['userid'];
       console.log(this.param1);
@@ -68,12 +70,20 @@ export class RegSalesComponent implements OnInit {
   }
 
   generateInvoice(itemsArray:any){
+    console.log(itemsArray);
+    const dialogRef = this.dialog.open(InvoicePopupComponent,
+    {
+
+      data: {userdetails: this.userdetails,items:itemsArray},
+    });
+    /*
     const profile:string=this.userdetails.firstName+"\n"+this.userdetails.address.shopname+"\n"+this.userdetails.address.city+"\n"+
     "Andhra Pradesh\nIndia-522002";
 
     this.service.getInvoice(profile,itemsArray).subscribe((data:any)=>{
       console.log(data);
     })
+    */
   }
 }
 

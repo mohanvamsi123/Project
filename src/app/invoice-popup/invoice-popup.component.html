@@ -1,0 +1,6 @@
+<div style="text-align: end;">
+<button mat-icon-button color="primary" aria-label="Download invoice" printSectionId="print-section" ngxPrint [useExistingCss]="true">
+    <mat-icon>save_alt</mat-icon>
+  </button>
+</div>
+<app-invoice [itemsList]="datas?.items" [from]="datas?.userdetails" id="print-section" ></app-invoice>

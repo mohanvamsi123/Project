@@ -30,6 +30,8 @@ import { SalesTableComponent } from './sales-table/sales-table.component';
 import { MatTableModule } from '@angular/material/table';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { InvoiceComponent } from './invoice/invoice.component';
+import { InvoicePopupComponent } from './invoice-popup/invoice-popup.component';
+import {NgxPrintModule} from 'ngx-print';
 
 
 @NgModule({
@@ -43,7 +45,8 @@ import { InvoiceComponent } from './invoice/invoice.component';
     ItemListComponent,
     RegSalesComponent,
     SalesTableComponent,
-    InvoiceComponent
+    InvoiceComponent,
+    InvoicePopupComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +68,9 @@ import { InvoiceComponent } from './invoice/invoice.component';
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+NgxPrintModule
+
   ],
   providers: [
     {

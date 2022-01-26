@@ -1,18 +1,43 @@
+
+
+@media print {
+
+  * {
+    outline: none;
+    color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  #balance-due{
+    background-color: gainsboro;
+    
+    td:first-child{
+      padding-left: 20px;
+      border-radius: 5px 0px 0px 5px;
+    }
+    td:nth-child(2){
+      border-radius: 0px 5px 5px 0px;
+    }
+  }
+
+  
+}
+
+
 .invoice-page {
   width: 800px;
   margin: 20px auto;
   background-color: white;
   padding: 20px;
-  height: 100%;
+  min-height: 100%;
 }
 .heading {
   display: flex;
   justify-content: space-between;
 }
 
-.address > span {
-  font-weight: bold;
-}
+
 #balance-display {
   text-align: end;
 }
@@ -30,9 +55,10 @@
   padding-right: 30px;
 }
 
-#balance-display > table > tr:nth-child(3) {
+#balance-display > table > tr:nth-child(2) {
   font-weight: bold;
-  background-color: gainsboro;
+  background-color: lightgray;
+  border-radius: 5px;
 }
 #balance-display > table > tr {
   margin: 10px 0px;
@@ -43,6 +69,7 @@
 }
 #balance-display > table > tr > td:first-child {
   border-radius: 5px 0px 0px 5px;
+  padding-left: 20px;
 }
 
 #balance-display > table > tr > td:nth-child(2) {
