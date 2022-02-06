@@ -10,8 +10,13 @@
   }
 
   mat-sidenav{
-      width: 200px;
+      max-width: 200px;
   }
   .active{
       background-color: lightgray;
+  }
+  mat-icon{
+      font-size: 34px;
+      height: 34px;
+      width: 34px;
   }

@@ -20,7 +20,7 @@ export class RegSalesComponent implements OnInit {
   userdetails!:GetCustomer;
   salesForm!: FormGroup;
   items:Array<any>=[];
-  columnHeaderArray:string[]=["select","Date","Item","Quantity","Unit Price","Total Price"];
+  columnHeaderArray:string[]=["select","Date","Item","Quantity","Unit Price","Total Price","Actions"];
   columnsDataArray:GetSales[]=[];
 
   constructor(public dialog: MatDialog,private route: ActivatedRoute,private fb:FormBuilder,private service:CustomersService) { 

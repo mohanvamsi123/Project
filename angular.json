@@ -111,6 +111,37 @@
           }
         }
       }
+    },
+    "ngx-invoice": {
+      "projectType": "library",
+      "root": "projects/ngx-invoice",
+      "sourceRoot": "projects/ngx-invoice/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/ngx-invoice/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-invoice/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/ngx-invoice/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-invoice/src/test.ts",
+            "tsConfig": "projects/ngx-invoice/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-invoice/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "project"

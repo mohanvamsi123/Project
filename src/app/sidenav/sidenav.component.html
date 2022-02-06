@@ -2,15 +2,16 @@
     <mat-sidenav mode="side" opened >
         <mat-nav-list>
             <mat-list-item routerLinkActive="active" routerLink="customers" >
-               <a matLine >Customers</a>
+               <a matLine matTooltip="Customers"><mat-icon aria-hidden="false" aria-label="Example home icon">person</mat-icon>
+               </a>
                <mat-divider></mat-divider>
             </mat-list-item>
             <mat-list-item routerLinkActive="active" routerLink="items">
-                <a matLine  > Items</a>
+                <a matLine  matTooltip="Products"> <mat-icon aria-hidden="false" aria-label="Example home icon">local_florist</mat-icon></a>
                 <mat-divider></mat-divider>
              </mat-list-item>
              <mat-list-item routerLinkActive="active" routerLink="invoice">
-                <a matLine  > Invoice</a>
+                <a matLine  matTooltip="Invoice"><mat-icon aria-hidden="false" aria-label="Example home icon">picture_as_pdf</mat-icon></a>
                 <mat-divider></mat-divider>
              </mat-list-item>
             

@@ -1,8 +1,9 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewChecked, ChangeDetectorRef, Component, Input, OnChanges, OnInit, Output,EventEmitter} from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, Input, OnChanges, OnInit, Output,EventEmitter, ViewChild} from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { GetSales } from '../interface/get-sales';
-
+import {MatSort} from '@angular/material/sort';
+import { FormControl, FormGroup } from '@angular/forms';
 
 
 
@@ -14,18 +15,27 @@ import { GetSales } from '../interface/get-sales';
 export class SalesTableComponent implements OnInit,OnChanges,AfterViewChecked{
   @Input() columnHeaders:string[]=[];
   @Input() columnsData:GetSales[]=[];
+  range = new FormGroup({
+    start: new FormControl(),
+    end: new FormControl(),
+  });
   @Output() itemsList:EventEmitter<Array<{name:string,unit_cost:number,quantity:number}>>=new EventEmitter<Array<{name:string,unit_cost:number,quantity:number}>>();
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  //dataSource:GetSales[] = [];
+  
+ 
   dataSource=new MatTableDataSource<GetSales>([]);
   selection = new SelectionModel<GetSales>(true, []);
   buttonStatus:boolean=false;
+  @ViewChild(MatSort)
+  sort!: MatSort;
 
   constructor(private readonly changeDetectorRef: ChangeDetectorRef) { }
   ngAfterViewChecked(): void {
     this.changeDetectorRef.detectChanges();
 
   
+  }
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
   }
 
   ngOnInit(): void {
@@ -48,6 +58,10 @@ export class SalesTableComponent implements OnInit,OnChanges,AfterViewChecked{
     }
     return numSelected === numRows;
     
+  }
+
+  editrow(data:any){
+    console.log(data);
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */

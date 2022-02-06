@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatChipsModule} from '@angular/material/chips';
+
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { ItemsComponent } from './items/items.component';
@@ -52,6 +54,7 @@ import {NgxPrintModule} from 'ngx-print';
     BrowserModule,
     AppRoutingModule,
     MatNativeDateModule,
+    MatChipsModule,
     MatSlideToggleModule,
     MatSelectModule,
     MatDatepickerModule,

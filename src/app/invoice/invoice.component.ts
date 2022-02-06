@@ -26,7 +26,7 @@ export class InvoiceComponent implements OnInit {
           return prev+curr
         })
       } else {
-        this.totalPrice = { total: (this.itemsList[0].quantity * this.itemsList[0].unit_cost) }
+        this.totalPrice = this.itemsList[0].quantity * this.itemsList[0].unit_cost;
       }
       console.log(this.totalPrice);
 

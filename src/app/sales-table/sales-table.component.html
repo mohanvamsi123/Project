@@ -1,4 +1,32 @@
-<table mat-table [dataSource]="dataSource" recycleRows fixedLayout>
+
+<div style="display: flex;justify-content:space-between;margin:8px 25px;align-items: center;">
+  <div style="padding: 5px 0px;">
+    <mat-chip-list aria-label="Suggestions">
+      <mat-chip>Current Day</mat-chip>
+      <mat-chip>Current Week</mat-chip>
+      <mat-chip>Current Month</mat-chip>
+      <mat-chip>Last 30 days</mat-chip>
+      <mat-chip >Last 60 days</mat-chip>
+    </mat-chip-list>
+  </div>
+  <div>
+    <button mat-icon-button aria-label="select range"  color="primary">
+      <mat-icon>date_range</mat-icon>
+    </button>   
+
+  <button mat-icon-button aria-label="print invoice"   >
+    <mat-icon>search</mat-icon>
+  </button>
+<button mat-icon-button aria-label="print invoice" (click)="submit()" *ngIf="buttonStatus" color="primary">
+  <mat-icon>picture_as_pdf</mat-icon>
+</button>
+<button mat-icon-button aria-label="delet row"  *ngIf="buttonStatus" color="warn">
+  <mat-icon>delete_forever</mat-icon>
+</button>
+</div>
+</div>
+
+<table mat-table [dataSource]="dataSource" recycleRows fixedLayout matSort>
   <ng-container matColumnDef="{{columnHeaders[0]}}">
     <th mat-header-cell *matHeaderCellDef>
       <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
@@ -18,8 +46,8 @@
   </ng-container>
 
 
-  <ng-container matColumnDef="{{columnHeaders[2]}}">
-    <th mat-header-cell *matHeaderCellDef> Item </th>
+  <ng-container matColumnDef="{{columnHeaders[2]}}" >
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Item </th>
     <td mat-cell *matCellDef="let element"> {{element.i_name | titlecase}} </td>
   </ng-container>
 
@@ -42,9 +70,16 @@
         {{element.qty*element.price |currency:"INR":"symbol"}} </div>
     </td>
   </ng-container>
+  <ng-container matColumnDef="{{columnHeaders[6]}}">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button aria-label="edit row" (click)="editrow(element)">
+        <mat-icon>edit</mat-icon>
+      </button>
+      
+  </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columnHeaders"></tr>
   <tr mat-row matRipple *matRowDef="let row; columns: columnHeaders;"></tr>
 </table>
 
-<button mat-button (click)="submit()" *ngIf="buttonStatus">Submit</button>
