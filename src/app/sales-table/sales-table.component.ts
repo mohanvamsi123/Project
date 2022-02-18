@@ -13,6 +13,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./sales-table.component.scss']
 })
 export class SalesTableComponent implements OnInit,OnChanges,AfterViewChecked{
+  showSearch:boolean=false;
   @Input() columnHeaders:string[]=[];
   @Input() columnsData:GetSales[]=[];
   range = new FormGroup({
@@ -20,13 +21,14 @@ export class SalesTableComponent implements OnInit,OnChanges,AfterViewChecked{
     end: new FormControl(),
   });
   @Output() itemsList:EventEmitter<Array<{name:string,unit_cost:number,quantity:number}>>=new EventEmitter<Array<{name:string,unit_cost:number,quantity:number}>>();
-  
+  @Output() editSales:EventEmitter<any>=new EventEmitter<any>();
  
   dataSource=new MatTableDataSource<GetSales>([]);
   selection = new SelectionModel<GetSales>(true, []);
   buttonStatus:boolean=false;
   @ViewChild(MatSort)
   sort!: MatSort;
+ 
 
   constructor(private readonly changeDetectorRef: ChangeDetectorRef) { }
   ngAfterViewChecked(): void {
@@ -62,6 +64,7 @@ export class SalesTableComponent implements OnInit,OnChanges,AfterViewChecked{
 
   editrow(data:any){
     console.log(data);
+    this.editSales.emit(data);
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
