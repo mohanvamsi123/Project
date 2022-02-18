@@ -1,10 +1,10 @@
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewChecked, ChangeDetectorRef, Component, Input, OnChanges, OnInit, Output,EventEmitter, ViewChild} from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, Input, OnChanges, OnInit, Output, EventEmitter, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { GetSales } from '../interface/get-sales';
-import {MatSort} from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import { FormControl, FormGroup } from '@angular/forms';
-
+import { debounceTime } from 'rxjs/operators';
 
 
 @Component({
@@ -12,57 +12,73 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './sales-table.component.html',
   styleUrls: ['./sales-table.component.scss']
 })
-export class SalesTableComponent implements OnInit,OnChanges,AfterViewChecked{
-  showSearch:boolean=false;
-  @Input() columnHeaders:string[]=[];
-  @Input() columnsData:GetSales[]=[];
+export class SalesTableComponent implements OnInit, OnChanges, AfterViewChecked {
+  showSearch: boolean = false;
+  @Input() columnHeaders: string[] = [];
+  @Input() columnsData: GetSales[] = [];
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl(),
   });
-  @Output() itemsList:EventEmitter<Array<{name:string,unit_cost:number,quantity:number}>>=new EventEmitter<Array<{name:string,unit_cost:number,quantity:number}>>();
-  @Output() editSales:EventEmitter<any>=new EventEmitter<any>();
- 
-  dataSource=new MatTableDataSource<GetSales>([]);
+  @Output() itemsList: EventEmitter<Array<{ name: string, unit_cost: number, quantity: number }>> = new EventEmitter<Array<{ name: string, unit_cost: number, quantity: number }>>();
+  @Output() editSales: EventEmitter<any> = new EventEmitter<any>();
+
+  dataSource = new MatTableDataSource<GetSales>([]);
   selection = new SelectionModel<GetSales>(true, []);
-  buttonStatus:boolean=false;
+  buttonStatus: boolean = false;
   @ViewChild(MatSort)
   sort!: MatSort;
- 
+  form: FormGroup = new FormGroup({
+    itemSearch: new FormControl()
+  });
+
 
   constructor(private readonly changeDetectorRef: ChangeDetectorRef) { }
   ngAfterViewChecked(): void {
     this.changeDetectorRef.detectChanges();
 
-  
+
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
 
   ngOnInit(): void {
+    this.form.controls['itemSearch'].valueChanges.pipe(debounceTime(1000)).subscribe(value => {
+
+      this.searchLogic(value);
+    })
   }
 
-  ngOnChanges(): void{
+  ngOnChanges(): void {
     console.log(this.columnsData);
-  this.dataSource.data=this.columnsData;
+    this.dataSource.data = this.columnsData;
   }
 
+
+  searchLogic(data: string) {
+    this.dataSource.filter = data.trim().toLowerCase();
+  }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
-    if(this.selection.selected.length>0){
-      this.buttonStatus=true;
-    }else{
-      this.buttonStatus=false;
+    if (this.selection.selected.length > 0) {
+      this.buttonStatus = true;
+    } else {
+      this.buttonStatus = false;
     }
     return numSelected === numRows;
-    
+
+  }
+  clearFilter() {
+    this.showSearch = false;
+    this.form.patchValue({ 'itemSearch': '' });
+
   }
 
-  editrow(data:any){
+  editrow(data: any) {
     console.log(data);
     this.editSales.emit(data);
   }
@@ -85,16 +101,16 @@ export class SalesTableComponent implements OnInit,OnChanges,AfterViewChecked{
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
-  submit(){
-    const itemsData=this.selection.selected.map((data:GetSales)=>{
-     return {
-       "date":data.createdAt,
-        "name":data.i_name,
-        "quantity":data.qty,
-        "unit_cost":data.price,
-     }
-   })
-   this.itemsList.emit(itemsData);
+  submit() {
+    const itemsData = this.selection.selected.map((data: GetSales) => {
+      return {
+        "date": data.createdAt,
+        "name": data.i_name,
+        "quantity": data.qty,
+        "unit_cost": data.price,
+      }
+    })
+    this.itemsList.emit(itemsData);
   }
 
   /*

@@ -24,16 +24,18 @@
       <mat-icon>date_range</mat-icon>
     </button> 
     -->  
+    <ng-container [formGroup]="form"]>
     <mat-form-field floatLabel="always" *ngIf="showSearch" style="height: 0px;padding-bottom: 0px;" >
       <mat-label></mat-label>
-      <input matInput type="text" placeholder="search item">
+      <input matInput type="text" placeholder="search item" formControlName="itemSearch" >
       <button matPrefix mat-icon-button aria-label="search">
         <mat-icon>search</mat-icon>
       </button>
-      <button  matSuffix mat-icon-button aria-label="Clear" (click)="showSearch=false" >
+      <button  matSuffix mat-icon-button aria-label="Clear" (click)="clearFilter()" >
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
+  </ng-container>
   <button mat-icon-button aria-label="print invoice" (click)="showSearch=true" *ngIf="!showSearch" >
     <mat-icon>search</mat-icon>
   </button>
