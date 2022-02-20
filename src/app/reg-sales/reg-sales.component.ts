@@ -26,12 +26,8 @@ export class RegSalesComponent implements OnInit {
   @ViewChild('title') sideNavTitle!: ElementRef<HTMLHeadingElement>;
   @ViewChild('salesSubmit',{static:true}) salesButton!: ElementRef<HTMLButtonElement>;
   edited!: boolean;
+  salesId!: number;
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private fb: FormBuilder, private service: CustomersService) {
-    /*this.route.queryParams.subscribe(params => {
-      this.param1 = params['userid'];
-      console.log(this.param1);
-  });*/
-
   }
 
   ngOnInit(): void {
@@ -79,21 +75,21 @@ export class RegSalesComponent implements OnInit {
 
         data: { userdetails: this.userdetails, items: itemsArray },
       });
-    /*
-    const profile:string=this.userdetails.firstName+"\n"+this.userdetails.address.shopname+"\n"+this.userdetails.address.city+"\n"+
-    "Andhra Pradesh\nIndia-522002";
-
-    this.service.getInvoice(profile,itemsArray).subscribe((data:any)=>{
-      console.log(data);
-    })
-    */
   }
 
   ModifiedSubmit(){
-    console.log("Modified");
-  }
+    const body=this.salesForm.value;
+    body["person"] = this.userdetails.u_id;
+    console.log(body);
+    this.service.updateSales(this.salesId,body).subscribe((data:any)=>{
+      console.log(data);
+      this.getSales(this.userdetails.u_id);
+    })
+    }
+
   editSales(data: any) {
     console.table(data);
+    this.salesId=data?.id;
     this.salesForm.setValue({
       createdAt: new Date(data?.createdAt),
       item: data?.i_id,
@@ -101,7 +97,7 @@ export class RegSalesComponent implements OnInit {
       item_Price: data?.price
     });
     this.sideNavTitle.nativeElement.innerText = "Edit Sales";
-    this.salesForm.get('createdAt')?.disable();
+    
     this.edited=true;
     this.sideDrawer.open();
    
@@ -115,8 +111,22 @@ export class RegSalesComponent implements OnInit {
     this.sideNavTitle.nativeElement.innerText = "Add Sales";
     this.salesForm.get('createdAt')?.enable();
     this.edited=false;
-    this.sideDrawer.open();
-    
+    this.sideDrawer.open(); 
+  }
+
+  deleteSales(data:string){
+    this.service.deleteSales(data).subscribe((data:any)=>{
+      console.log(data);
+      this.getSales(this.userdetails.u_id)
+    })
+  }
+  filterSalesByDate(range:{"start":string,"end":string}){
+    console.log(range);
+    this.service.filterSales(this.userdetails.u_id,range).subscribe((data:any)=>{
+      console.log(data);
+      this.columnsDataArray = [...data];
+    })
+
   }
 }
 

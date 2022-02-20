@@ -73,12 +73,26 @@ export class CustomersService {
     return this.http.get<GetSales[]>(`${environment.api_url}/price/controller/getDetails/${userid}`);
   }
 
+  updateSales(sale_id:number,data:any): Observable<any>{
+    return this.http.put(`${environment.api_url}/price/controller/putDetails/${sale_id}`,JSON.stringify(data));
+  }
+
+  deleteSales(data:string):Observable<any>{
+    return this.http.delete(`${environment.api_url}/price/controller/deleteDetails/${data}`);
+  }
+
+  filterSales(userid:number,range:{"start":string,"end":string}):Observable<GetSales[]>{
+    return this.http.get<GetSales[]>(`${environment.api_url}/price/controller/getDetails/${userid}/${range.start}/${range.end}`);
+  }
+
   getInvoice(customerdetails:string,items:[]):Observable<any>{
     this.invoicestring.items=items;
     this.invoicestring.to=customerdetails;
     console.log(JSON.stringify(this.invoicestring));
     return this.http.post('https://invoice-generator.com',JSON.stringify(this.invoicestring));
   }
+
+
 
 
 

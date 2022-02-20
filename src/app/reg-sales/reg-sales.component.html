@@ -114,6 +114,8 @@
       [columnsData]="columnsDataArray"
       (itemsList)="generateInvoice($event)"
       (editSales)="editSales($event)"
+      (deleteList)="deleteSales($event)"
+      (filterDate)="filterSalesByDate($event)"
     ></app-sales-table>
   </div>
 </mat-drawer-container>

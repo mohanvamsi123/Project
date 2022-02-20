@@ -17,7 +17,7 @@
         <input matEndDate formControlName="end" placeholder="End date">
       </mat-date-range-input>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-date-range-picker #picker></mat-date-range-picker>
+      <mat-date-range-picker #picker (closed)="dateSelected()"></mat-date-range-picker>
     </mat-form-field>
     <!--
     <button mat-icon-button aria-label="select range"  color="primary">
@@ -43,7 +43,7 @@
 <button mat-icon-button aria-label="print invoice" (click)="submit()" *ngIf="buttonStatus" color="primary">
   <mat-icon>picture_as_pdf</mat-icon>
 </button>
-<button mat-icon-button aria-label="delet row"  *ngIf="buttonStatus" color="warn">
+<button mat-icon-button aria-label="delet row"  *ngIf="buttonStatus" color="warn" (click)="deleteRows()">
   <mat-icon>delete_forever</mat-icon>
 </button>
 </div>
