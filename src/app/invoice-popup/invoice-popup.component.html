@@ -1,6 +1,36 @@
-<div style="text-align: end;">
-<button mat-icon-button color="primary" aria-label="Download invoice" printSectionId="print-section" ngxPrint [useExistingCss]="true">
+<div style="display: flex;justify-content: space-between;">
+<div>
+Please add previous balance if exists:&nbsp;
+<mat-form-field class="example-form-field">
+  <mat-label></mat-label>
+  <input
+    matInput
+    type="number"
+    [(ngModel)]="value"
+    value="0"
+    placeholder="0"
+    min="0"
+  />
+  <span matPrefix>&#x20b9;&nbsp;</span>
+  <span matSuffix>.00</span>
+</mat-form-field>
+</div>
+<div style="text-align: end">
+  <button
+    mat-icon-button
+    color="primary"
+    aria-label="Download invoice"
+    printSectionId="print-section"
+    ngxPrint
+    [useExistingCss]="true"
+  >
     <mat-icon>save_alt</mat-icon>
   </button>
 </div>
-<app-invoice [itemsList]="datas?.items" [from]="datas?.userdetails" id="print-section" ></app-invoice>
+</div>
+<app-invoice
+  [itemsList]="datas?.items"
+  [from]="datas?.userdetails"
+  id="print-section"
+  [prevBalance]="value === null || value < 0 ? 0 : value"
+></app-invoice>

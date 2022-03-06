@@ -9,6 +9,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class InvoicePopupComponent implements OnInit {
 
 datas:any;
+value:number=0;
   constructor(@Inject(MAT_DIALOG_DATA) public data:any) {
     this.datas=data;
    }

@@ -40,7 +40,7 @@
           <tr class="mat-body-strong" id="balance-due">
             <td>Balance Due:</td>
             <td style="text-align: end">
-              {{ totalPrice | currency: "INR":"symbol" }}&nbsp;
+              {{ totalPrice + prevBalance | currency: "INR":"symbol" }}&nbsp;
             </td>
           </tr>
         </table>
@@ -74,11 +74,11 @@
         </tr>
         <tr>
           <td>Previous Balance:</td>
-          <td>{{ 0 | currency: "INR":"symbol" }}</td>
+          <td>{{ prevBalance | currency: "INR":"symbol" }}</td>
         </tr>
         <tr>
           <td>Total:</td>
-          <td>{{ totalPrice | currency: "INR":"symbol" }}</td>
+          <td>{{ totalPrice + prevBalance | currency: "INR":"symbol" }}</td>
         </tr>
       </table>
     </div>

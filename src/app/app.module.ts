@@ -7,6 +7,7 @@ import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,7 +19,7 @@ import { CustomersComponent } from './popup/customers/customers.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './interceptor/api.interceptor';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -34,6 +35,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { InvoicePopupComponent } from './invoice-popup/invoice-popup.component';
 import {NgxPrintModule} from 'ngx-print';
+import { LoaderComponent } from './loader/loader.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 @NgModule({
@@ -48,7 +51,8 @@ import {NgxPrintModule} from 'ngx-print';
     RegSalesComponent,
     SalesTableComponent,
     InvoiceComponent,
-    InvoicePopupComponent
+    InvoicePopupComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,10 @@ import {NgxPrintModule} from 'ngx-print';
     MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
-NgxPrintModule
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+    NgxPrintModule,
+    FormsModule
 
   ],
   providers: [

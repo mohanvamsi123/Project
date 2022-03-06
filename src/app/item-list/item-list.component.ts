@@ -20,7 +20,7 @@ set itemsArray(value:any){
   constructor(private service:CustomersService) { }
 
   ngOnInit(): void {
-    this.getItems();
+    //this.getItems();
   }
 
   itemstatus(data:any){

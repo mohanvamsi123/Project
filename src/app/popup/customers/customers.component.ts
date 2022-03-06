@@ -13,6 +13,7 @@ export class CustomersComponent implements OnInit {
   profileForm!: FormGroup;
   profile:any;
   state:any;
+  addLoader:boolean=false;
   constructor( public dialogRef: MatDialogRef<CustomersComponent>,
     @Inject(MAT_DIALOG_DATA) public data: CustomerPopup,private fb: FormBuilder,private customeraction:CustomersService) {
       console.log(data);
@@ -34,8 +35,10 @@ export class CustomersComponent implements OnInit {
   submit = (data:any) => {
     //console.log(this.profileForm.value);
     if(data=='add'){
+    this.addLoader=true;
     this.customeraction.newCustomer(this.profileForm.value).subscribe((data:any)=>{
       this.dialogRef.close({"status":"closed","type":"response","data":data})
+      this.addLoader=false;
     })
   }else if(data=='edit'){
     this.customeraction.editCustomer(this.profile.u_id,this.profileForm.value).subscribe((data:any)=>{

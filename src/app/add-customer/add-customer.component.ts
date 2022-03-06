@@ -15,7 +15,9 @@ export class AddCustomerComponent implements OnInit {
   constructor(public dialog: MatDialog,private customeraction:CustomersService,private router: Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.getCustomers();
+    //this.getCustomers();
+    this.customersList = this.route?.snapshot?.data['getCustomers'];
+
   }
 
   customer_action=(status:any,value:any,background:boolean) => {

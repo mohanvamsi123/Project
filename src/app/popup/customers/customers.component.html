@@ -1,6 +1,6 @@
 <form [formGroup]="profileForm">
   <ng-container *ngIf="state=='add' || state=='edit';else show">
-    <h1 mat-dialog-title>Edit Details</h1>
+    <h1 mat-dialog-title>Insert Details</h1>
 
     <p>
         <mat-form-field appearance="legacy">
@@ -41,7 +41,8 @@
       </p>
       <div mat-dialog-actions align="end" *ngIf="state=='add'">
         <button mat-button (click)="close()">Close</button>
-        <button mat-button (click)="submit('add')" type="submit" [disabled]="!profileForm.valid">Submit</button>
+        <button mat-button *ngIf="!addLoader" (click)="submit('add')" type="submit" [disabled]="!profileForm.valid">Submit</button>
+        <button *ngIf="addLoader" mat-button [disabled]="true"><mat-spinner  diameter="20" ></mat-spinner></button>
       </div>
       <div mat-dialog-actions align="end" *ngIf="state=='edit'">
         <button mat-button (click)="close()">Close</button>

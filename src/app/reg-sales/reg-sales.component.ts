@@ -114,9 +114,11 @@ export class RegSalesComponent implements OnInit {
     this.sideDrawer.open(); 
   }
 
-  deleteSales(data:string){
-    this.service.deleteSales(data).subscribe((data:any)=>{
-      console.log(data);
+  deleteSales(data:any){
+    console.log(data);
+    const action=data.action;
+    this.service.deleteSales(data.deletionString).subscribe((data:any)=>{
+      action.clear();
       this.getSales(this.userdetails.u_id)
     })
   }

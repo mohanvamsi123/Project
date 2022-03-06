@@ -11,6 +11,7 @@ export class InvoiceComponent implements OnInit {
   @Input()
   from!: GetCustomer;
   @Input() itemsList!: Array<any>;
+  @Input() prevBalance: number = 0;
   todayDate: Date | undefined;
   totalPrice: any;
   constructor() { }

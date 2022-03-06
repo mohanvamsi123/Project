@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import {formatDate} from '@angular/common';
 import { CustomersService} from '../services/customers.service';
 import { GetItems } from '../interface/get-items';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -14,13 +15,14 @@ export class ItemsComponent implements OnInit {
   addItem!: FormGroup;
   itemDetails:Array<any>=[];
 
-  constructor(private fb: FormBuilder,private service:CustomersService) { }
+  constructor(private fb: FormBuilder,private service:CustomersService,private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.addItem=this.fb.group({
       item_Name:new FormControl('',[Validators.required,Validators.minLength(3)]),
       
-    })
+    });
+    this.itemDetails = this.route?.snapshot?.data['getItems'];
   }
 
   submit(){
