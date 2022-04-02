@@ -49,7 +49,7 @@ export class RegSalesComponent implements OnInit {
     output["person"] = this.userdetails.u_id;
     this.service.regSales(output).subscribe((data: any) => {
       console.log(data);
-      this.sideDrawer.close();
+     // this.sideDrawer.close();
       this.getSales(this.userdetails?.u_id);
       this.salesForm.reset({ createdAt: new Date() });
     })
