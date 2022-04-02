@@ -38,6 +38,7 @@ import {NgxPrintModule} from 'ngx-print';
 import { LoaderComponent } from './loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ResizeObserverDirective } from './directive/resize-observer.directive';
+import { SearchPipe } from './pipes/search.pipe';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { ResizeObserverDirective } from './directive/resize-observer.directive';
     InvoiceComponent,
     InvoicePopupComponent,
     LoaderComponent,
-    ResizeObserverDirective
+    ResizeObserverDirective,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

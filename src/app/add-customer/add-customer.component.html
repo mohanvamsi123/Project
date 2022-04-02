@@ -2,9 +2,22 @@
     <button mat-button color="primary" role="button-operate" (click)="customer_action('add','',true)">New Customer</button>    
 </app-toolbar>
 
+<div style="margin:0px 20px 0px 20px;" [formGroup]="form" >
+<mat-form-field class="example-form-field" floatLabel="always">
+   <mat-label></mat-label>
+   <input matInput type="search" formControlName="itemSearch" placeholder="Search with Name or Mobile No">
+   <button  matSuffix mat-icon-button aria-label="Clear" >
+     <mat-icon>close</mat-icon>
+   </button>
+   <button matPrefix mat-icon-button aria-label="Search">
+      <mat-icon>search</mat-icon>
+    </button>
+ </mat-form-field>
+</div>
+
 <mat-list>
     <div mat-subheader>Users</div>
-    <mat-list-item *ngFor="let customers of customersList">
+    <mat-list-item *ngFor="let customers of customersList | search:(searchValue$ | async)">
       <mat-icon mat-list-icon>person_outline</mat-icon>
       <div mat-line>{{customers.firstName | titlecase}}</div>
       <div mat-line>+91 {{customers.phone_no}} </div>
