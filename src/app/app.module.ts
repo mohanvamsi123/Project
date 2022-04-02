@@ -37,6 +37,8 @@ import { InvoicePopupComponent } from './invoice-popup/invoice-popup.component';
 import {NgxPrintModule} from 'ngx-print';
 import { LoaderComponent } from './loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ResizeObserverDirective } from './directive/resize-observer.directive';
+import { SearchPipe } from './pipes/search.pipe';
 
 
 @NgModule({
@@ -52,7 +54,9 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     SalesTableComponent,
     InvoiceComponent,
     InvoicePopupComponent,
-    LoaderComponent
+    LoaderComponent,
+    ResizeObserverDirective,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

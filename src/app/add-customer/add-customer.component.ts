@@ -4,6 +4,8 @@ import { CustomersComponent } from '../popup/customers/customers.component';
 import {CustomersService} from '../services/customers.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import { GetCustomer } from '../interface/get-customer';
+import { FormControl, FormGroup } from '@angular/forms';
+import { debounceTime, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-customer',
@@ -12,11 +14,16 @@ import { GetCustomer } from '../interface/get-customer';
 })
 export class AddCustomerComponent implements OnInit {
   customersList:any=[];
+  form: FormGroup = new FormGroup({
+    itemSearch: new FormControl()
+  });
+  searchValue$!: Observable<any>;
   constructor(public dialog: MatDialog,private customeraction:CustomersService,private router: Router,private route:ActivatedRoute) { }
 
   ngOnInit(): void {
     //this.getCustomers();
     this.customersList = this.route?.snapshot?.data['getCustomers'];
+    this.searchValue$=this.form.controls['itemSearch'].valueChanges.pipe(debounceTime(1000));
 
   }
 
