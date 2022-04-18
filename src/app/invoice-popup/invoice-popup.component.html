@@ -1,12 +1,5 @@
 <div
-  style="
-    display: flex;
-    justify-content: space-between;
-    background-color: lightgray;
-    padding: 0px 5px 0px 5px;
-    align-items: center;
-    border-radius:5px;
-  "
+  class="invoice-balance"
 >
   <div>
     Please add previous balance if exists:&nbsp;
@@ -37,10 +30,12 @@
     </button>
   </div>
 </div>
-<mat-divider></mat-divider>
-<app-invoice
+<mat-dialog-content class="mat-typography" >
+  <app-invoice
   [itemsList]="datas?.items"
   [from]="datas?.userdetails"
   id="print-section"
   [prevBalance]="value === null || value < 0 ? 0 : value"
+  style="position: relative;"
 ></app-invoice>
+</mat-dialog-content>

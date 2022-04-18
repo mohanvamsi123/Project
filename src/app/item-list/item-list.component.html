@@ -2,7 +2,7 @@
     <div mat-subheader>Items</div>
     <mat-list-item *ngFor="let item of itemsArray">
       <mat-icon mat-list-icon>local_florist</mat-icon>
-      <div mat-line>{{item?.item_Name}}</div>
+      <div mat-line>{{item?.item_Name | titlecase}}</div>
       <div mat-line>Created on: {{item?.createdAt | date:'longDate'}} </div>
       <mat-slide-toggle color="primary" (change)="itemstatus(item)" [checked]="item?.item_Status"></mat-slide-toggle>
 
