@@ -51,8 +51,18 @@ export class RegSalesComponent implements OnInit {
       console.log(data);
      // this.sideDrawer.close();
       this.getSales(this.userdetails?.u_id);
-      this.salesForm.reset({ createdAt: new Date() });
+      this.resetAddForm();
+      this.salesForm.get(['item','item_Qty','item_Price'])?.reset();
+      //this.salesForm.reset({ createdAt: new Date() });
     })
+  }
+
+
+
+  resetAddForm(){
+    this.salesForm.get('item')?.reset();
+    this.salesForm.get('item_Qty')?.reset();
+    this.salesForm.get('item_Price')?.reset();
   }
 
   getSales(userid: number) {
@@ -84,6 +94,10 @@ export class RegSalesComponent implements OnInit {
     this.service.updateSales(this.salesId,body).subscribe((data:any)=>{
       console.log(data);
       this.getSales(this.userdetails.u_id);
+      this.salesForm.reset();
+      this.edited=false;
+      this.sideNavTitle.nativeElement.innerText = "Add Sales";
+
     })
     }
 

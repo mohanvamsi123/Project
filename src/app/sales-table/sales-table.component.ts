@@ -154,6 +154,7 @@ export class SalesTableComponent implements OnInit, OnChanges, AfterViewChecked 
         var start = new Date(curr.setDate(curr.getDate() - 30));
       }
 
+      
       this.filterDate.emit({
         "start": formatDate(start, 'yyyy-MM-dd', 'en-US'),
         "end": formatDate(new Date(), 'yyyy-MM-dd', 'en-US')

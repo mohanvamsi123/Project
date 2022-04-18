@@ -110,7 +110,7 @@
   <ng-container matColumnDef="{{ columnHeaders[1] }}">
     <th mat-header-cell *matHeaderCellDef>Date</th>
     <td mat-cell *matCellDef="let element">
-      {{ element.createdAt | date: "medium":"IST" }}
+      {{ element.createdAt | date: "mediumDate" }}
     </td>
   </ng-container>
 
