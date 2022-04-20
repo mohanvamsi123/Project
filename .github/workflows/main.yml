@@ -1,11 +1,17 @@
-name: Deploy to Heroku
-  # You may pin to the exact commit or the version.
-  # uses: AkhileshNS/heroku-deploy@79ef2ae4ff9b897010907016b268fd0f88561820
-  uses: AkhileshNS/heroku-deploy@v3.12.12
-  with:
-    # This will be used for authentication. You can find it in your heroku homepage account settings
-    heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-    # Email that you use with heroku
-    heroku_email: "mohhanvamsi.d1998@gmail.com"
-    heroku_app_name: "project-stg"
-    stack: "heroku-20"
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master # Changing the branch here would also work
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "project-stg" #Must be unique in Heroku
+          heroku_email: "mohhanvamsi.d1998@gmail.com"
