@@ -6,8 +6,7 @@
         <span class="mat-body-strong">D.G.Prakash</span><br />
         Raitu Bazar<br />
         Near RTC Bust Stand<br />
-        Guntur<br />
-        Andhra Pradesh<br />
+        Guntur, Andhra Pradesh<br />
         India-522002
       </address>
 
@@ -51,15 +50,17 @@
   <div class="body">
     <table>
       <tr>
+        <!--<th>S.No.</th>-->
         <th>Date</th>
         <th>Item</th>
         <th>Quantity</th>
         <th>Rate</th>
         <th>Amount</th>
       </tr>
-      <tr class="mat-body" *ngFor="let item of itemsList">
+      <tr class="mat-body" *ngFor="let item of itemsList;let sno=index;">
+        <!--<td>{{ sno+1 }}</td>-->
         <td>{{ item.date | date }}</td>
-        <td>{{ item.name }}</td>
+        <td>{{ item.name | titlecase}}</td>
         <td>{{ item.quantity }}</td>
         <td>{{ item.unit_cost | currency: "INR":"symbol" }}</td>
         <td>{{ item.quantity * item.unit_cost | currency: "INR":"symbol" }}</td>
