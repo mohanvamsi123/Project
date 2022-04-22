@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "postinstall": "ng build --aot --prod --env=${angular_env}",
+    "postinstall": "ng build --aot -c=${angular_env}",
     "heroku-postbuild": "ng build --prod",
     "dev": "ng build --configuration test"
   },
