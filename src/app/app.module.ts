@@ -41,6 +41,7 @@ import { ResizeObserverDirective } from './directive/resize-observer.directive';
 import { SearchPipe } from './pipes/search.pipe';
 import {MatTabsModule} from '@angular/material/tabs';
 import { TransactionsComponent } from './transactions/transactions.component';
+import { SaleDatesComponent } from './transactions/sale-dates/sale-dates.component';
 
 
 
@@ -60,7 +61,8 @@ import { TransactionsComponent } from './transactions/transactions.component';
     LoaderComponent,
     ResizeObserverDirective,
     SearchPipe,
-    TransactionsComponent
+    TransactionsComponent,
+    SaleDatesComponent
   ],
   imports: [
     BrowserModule,

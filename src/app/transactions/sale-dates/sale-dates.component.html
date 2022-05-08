@@ -1,0 +1,6 @@
+<mat-selection-list  [multiple]="false" (selectionChange)="onSelection($event)">
+    <mat-list-option *ngFor="let date of getDates$ | async" [value]="date">
+      {{date | date}}
+      <mat-divider></mat-divider>
+    </mat-list-option>
+</mat-selection-list>

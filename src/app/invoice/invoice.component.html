@@ -16,7 +16,7 @@
           >{{ from?.firstName }}<br
         /></span>
         <span *ngIf="from.address.shopname"
-          >{{ from.address.shopname }}<br
+          >{{ from?.address?.shopname }}<br
         /></span>
         <span *ngIf="from?.phone_no">+91 {{ from?.phone_no }}<br /></span>
         <span *ngIf="from?.address?.city">{{ from?.address?.city }}<br /></span>
@@ -34,7 +34,8 @@
         <table class="mat-body">
           <tr>
             <td style="padding-left: 0px;text-align: end;">Date:</td>
-            <td>{{ todayDate | date }}</td>
+            <td *ngIf="invoiceDate;else currentDate">{{ invoiceDate | date }}</td>
+            <ng-template #currentDate>{{ todayDate | date }}</ng-template>
           </tr>
 
           <tr class="mat-body-strong" id="balance-due">
@@ -51,7 +52,7 @@
     <table>
       <tr>
         <!--<th>S.No.</th>-->
-        <th>Date</th>
+        <th *ngIf="!individualDates">Date</th>
         <th>Item</th>
         <th>Quantity</th>
         <th>Rate</th>
@@ -59,7 +60,7 @@
       </tr>
       <tr class="mat-body" *ngFor="let item of itemsList;let sno=index;">
         <!--<td>{{ sno+1 }}</td>-->
-        <td>{{ item.date | date }}</td>
+        <td *ngIf="!individualDates">{{ item.date | date }}</td>
         <td>{{ item.name | titlecase}}</td>
         <td>{{ item.quantity }}</td>
         <td>{{ item.unit_cost | currency: "INR":"symbol" }}</td>

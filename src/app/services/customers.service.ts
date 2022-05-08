@@ -114,4 +114,8 @@ export class CustomersService {
   getDistinctDates(userid:number){
     return this.http.get(`${environment.api_url}/price/controller/getDetails/dates/${userid}`);
   }
+
+  getTransByDateandID(userid:number,date:string){
+    return this.http.get(`${environment.api_url}/price/controller/getDetails/dates/${userid}/${date}`);
+  }
 }

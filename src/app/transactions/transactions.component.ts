@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { GetCustomer } from '../interface/get-customer';
 import { CustomersService} from '../services/customers.service';
 
 @Component({
@@ -25,14 +26,35 @@ export class TransactionsComponent implements OnInit {
       amount:"2000"
     }
   ];
+  personId!: number;
+  userDetails!: GetCustomer;
+  formattedItems: Array<any>=[];
+  selectedDate!: string;
   constructor(private route: ActivatedRoute,private service:CustomersService) { }
 
   ngOnInit(): void {
-    console.log(this.route?.snapshot?.data['getprofile']);
+    this.userDetails=this.route?.snapshot?.data['getprofile'];
+    this.personId=this.route?.snapshot?.data['getprofile']?.u_id;
     this.getSalesDates(this.route?.snapshot?.data['getprofile']?.u_id);
   }
 
   getSalesDates(PersonId:number){
     this.getDates$ = this.service.getDistinctDates(PersonId);
+  }
+
+  fetchInvoiceData(selectedDate:string){
+    this.selectedDate=selectedDate;
+    this.service.getTransByDateandID(this.personId,selectedDate).subscribe((items:any)=>{
+      let operationalArray=[];
+      for(let item of items){
+        operationalArray.push({
+          "date":item.createdAt,
+          "name":item.item.item_Name,
+          "quantity":item.item_Qty,
+          "unit_cost":item.item_Price
+        });
+      }
+      this.formattedItems=operationalArray;
+    })
   }
 }
