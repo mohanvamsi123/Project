@@ -24,7 +24,7 @@ export class RegSalesComponent implements OnInit {
   columnsDataArray: GetSales[] = [];
   @ViewChild('drawer') sideDrawer!: MatDrawer;
   @ViewChild('title') sideNavTitle!: ElementRef<HTMLHeadingElement>;
-  @ViewChild('salesSubmit',{static:true}) salesButton!: ElementRef<HTMLButtonElement>;
+  @ViewChild('salesSubmit', { static: true }) salesButton!: ElementRef<HTMLButtonElement>;
   edited!: boolean;
   salesId!: number;
   constructor(public dialog: MatDialog, private route: ActivatedRoute, private fb: FormBuilder, private service: CustomersService) {
@@ -38,7 +38,7 @@ export class RegSalesComponent implements OnInit {
       item_Price: new FormControl('', [Validators.required, Validators.min(1)])
     })
     this.userdetails = this.route?.snapshot?.data['getprofile'];
-    console.log(this.userdetails)
+    console.log(this.userdetails);
     this.getItems();
     this.getSales(this.userdetails?.u_id);
   }
@@ -49,17 +49,17 @@ export class RegSalesComponent implements OnInit {
     output["person"] = this.userdetails.u_id;
     this.service.regSales(output).subscribe((data: any) => {
       console.log(data);
-     // this.sideDrawer.close();
+      // this.sideDrawer.close();
       this.getSales(this.userdetails?.u_id);
       this.resetAddForm();
-      this.salesForm.get(['item','item_Qty','item_Price'])?.reset();
+      this.salesForm.get(['item', 'item_Qty', 'item_Price'])?.reset();
       //this.salesForm.reset({ createdAt: new Date() });
     })
   }
 
 
 
-  resetAddForm(){
+  resetAddForm() {
     this.salesForm.get('item')?.reset();
     this.salesForm.get('item_Qty')?.reset();
     this.salesForm.get('item_Price')?.reset();
@@ -87,23 +87,23 @@ export class RegSalesComponent implements OnInit {
       });
   }
 
-  ModifiedSubmit(){
-    const body=this.salesForm.value;
+  ModifiedSubmit() {
+    const body = this.salesForm.value;
     body["person"] = this.userdetails.u_id;
     console.log(body);
-    this.service.updateSales(this.salesId,body).subscribe((data:any)=>{
+    this.service.updateSales(this.salesId, body).subscribe((data: any) => {
       console.log(data);
       this.getSales(this.userdetails.u_id);
       this.salesForm.reset();
-      this.edited=false;
+      this.edited = false;
       this.sideNavTitle.nativeElement.innerText = "Add Sales";
 
     })
-    }
+  }
 
   editSales(data: any) {
     console.table(data);
-    this.salesId=data?.id;
+    this.salesId = data?.id;
     this.salesForm.setValue({
       createdAt: new Date(data?.createdAt),
       item: data?.i_id,
@@ -111,34 +111,35 @@ export class RegSalesComponent implements OnInit {
       item_Price: data?.price
     });
     this.sideNavTitle.nativeElement.innerText = "Edit Sales";
-    
-    this.edited=true;
+
+    this.edited = true;
     this.sideDrawer.open();
-   
+
   }
+  /*
   closeDrawer() {
     this.edited=false;
     this.sideDrawer.close();
     this.salesForm.reset({ 'createdAt': new Date() });
-  }
+  }*/
   openDrawer() {
     this.sideNavTitle.nativeElement.innerText = "Add Sales";
     this.salesForm.get('createdAt')?.enable();
-    this.edited=false;
-    this.sideDrawer.open(); 
+    this.edited = false;
+    this.sideDrawer.open();
   }
 
-  deleteSales(data:any){
+  deleteSales(data: any) {
     console.log(data);
-    const action=data.action;
-    this.service.deleteSales(data.deletionString).subscribe((data:any)=>{
+    const action = data.action;
+    this.service.deleteSales(data.deletionString).subscribe((data: any) => {
       action.clear();
       this.getSales(this.userdetails.u_id)
     })
   }
-  filterSalesByDate(range:{"start":string,"end":string}){
+  filterSalesByDate(range: { "start": string, "end": string }) {
     console.log(range);
-    this.service.filterSales(this.userdetails.u_id,range).subscribe((data:any)=>{
+    this.service.filterSales(this.userdetails.u_id, range).subscribe((data: any) => {
       console.log(data);
       this.columnsDataArray = [...data];
     })

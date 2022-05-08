@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api_url: 'https://spring850.herokuapp.com'
+  api_url: 'https://spring-stg.herokuapp.com'
 };
 
 /*
