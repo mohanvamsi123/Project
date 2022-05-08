@@ -39,6 +39,9 @@ import { LoaderComponent } from './loader/loader.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ResizeObserverDirective } from './directive/resize-observer.directive';
 import { SearchPipe } from './pipes/search.pipe';
+import {MatTabsModule} from '@angular/material/tabs';
+import { TransactionsComponent } from './transactions/transactions.component';
+
 
 
 @NgModule({
@@ -56,7 +59,8 @@ import { SearchPipe } from './pipes/search.pipe';
     InvoicePopupComponent,
     LoaderComponent,
     ResizeObserverDirective,
-    SearchPipe
+    SearchPipe,
+    TransactionsComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +87,8 @@ import { SearchPipe } from './pipes/search.pipe';
     MatProgressBarModule,
     MatProgressSpinnerModule,
     NgxPrintModule,
-    FormsModule
+    FormsModule,
+    MatTabsModule
 
   ],
   providers: [

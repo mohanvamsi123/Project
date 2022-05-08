@@ -109,4 +109,9 @@ export class CustomersService {
     output["address"]["shopname"] = data.store;
     return output
   }
+
+
+  getDistinctDates(userid:number){
+    return this.http.get(`${environment.api_url}/price/controller/getDetails/dates/${userid}`);
+  }
 }

@@ -21,21 +21,23 @@
       <mat-icon mat-list-icon>person_outline</mat-icon>
       <div mat-line>{{customers.firstName | titlecase}}</div>
       <div mat-line>+91 {{customers.phone_no}} </div>
-      <button mat-icon-button matTooltip="view profile" (click)="customer_action('view',customers,false)">
+      <button mat-icon-button matTooltip="View Profile" (click)="customer_action('view',customers,false)">
         <mat-icon>visibility</mat-icon>
      </button>
-     <!--
-      <button mat-icon-button matTooltip="edit profile" (click)="customer_action('edit',customers,true)">
-        <mat-icon>edit</mat-icon>
+      <button mat-icon-button matTooltip="Transactions" (click)="navigate(customers,'transactions')">
+        <mat-icon>attach_money</mat-icon>
      </button>
-     -->
-     <button mat-icon-button matTooltip="add Data" (click)="navigate(customers)">
+     <button mat-icon-button matTooltip="Add Sales" (click)="navigate(customers,'add sales')">
       <mat-icon>assignment</mat-icon>
-   </button>
-     <button mat-icon-button matTooltip="delete profile">
+      </button>
+   <!--
+     <button mat-icon-button matTooltip="Delete Profile">
         <mat-icon>delete_outline</mat-icon>
      </button>
+   -->  
     </mat-list-item>
 </mat-list>
+
+
 
 

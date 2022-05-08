@@ -7,6 +7,7 @@ import { RegSalesComponent } from './reg-sales/reg-sales.component';
 import { GetCustomerResolver } from './resolver/get-customer.resolver';
 import { GetItemsResolver } from './resolver/get-items.resolver';
 import { GetProfileResolver } from './resolver/get-profile.resolver';
+import {TransactionsComponent} from './transactions/transactions.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,15 @@ const routes: Routes = [
   {
     path: 'customers/sales',
     component: RegSalesComponent,
+    resolve:{
+      getprofile:GetProfileResolver
+
+    } 
+  },
+
+  {
+    path: 'customers/transactions',
+    component: TransactionsComponent,
     resolve:{
       getprofile:GetProfileResolver
 
