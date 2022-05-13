@@ -42,6 +42,8 @@ import { SearchPipe } from './pipes/search.pipe';
 import {MatTabsModule} from '@angular/material/tabs';
 import { TransactionsComponent } from './transactions/transactions.component';
 import { SaleDatesComponent } from './transactions/sale-dates/sale-dates.component';
+import { PaymentPopupComponent } from './transactions/payment-popup/payment-popup.component';
+import { CustomerNameComponent } from './customer-name/customer-name.component';
 
 
 
@@ -62,7 +64,9 @@ import { SaleDatesComponent } from './transactions/sale-dates/sale-dates.compone
     ResizeObserverDirective,
     SearchPipe,
     TransactionsComponent,
-    SaleDatesComponent
+    SaleDatesComponent,
+    PaymentPopupComponent,
+    CustomerNameComponent
   ],
   imports: [
     BrowserModule,

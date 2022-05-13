@@ -1,16 +1,26 @@
-<app-toolbar>Transactions </app-toolbar>
-
-<div class="row">
-  <div class="col-md-2" style="overflow-y:auto;height: 70vh;">
+<app-toolbar
+  >Transactions
+  <button
+    mat-button
+    color="primary"
+    role="button-operate"
+    (click)="payment_action()"
+  >
+    Add Payment
+  </button>
+</app-toolbar>
+<div class="container-fluid">
+<div class="row" style="min-height: 82vh;">
+  
+  <div class="col-md-2" >
     <app-sale-dates [personId]="personId" (selectedDate)="fetchInvoiceData($event)"></app-sale-dates>
   </div>
-  <div class="col-md-8">
+  
+  <div class="col-md-7" style="overflow-y: auto;">
     <app-invoice [from]="userDetails" [individualDates]="true" [invoiceDate]="selectedDate"  [itemsList]="formattedItems"
     ></app-invoice>
   </div>
+  
+  
 </div>
-
-
-
-
-
+</div>

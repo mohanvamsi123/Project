@@ -1,0 +1,62 @@
+<h1 mat-dialog-title>Add Payment</h1>
+
+
+<form [formGroup]="transactionForm">
+<!--User Name -->
+
+
+<app-customer-name [firstName]="userDetails?.firstName"></app-customer-name>
+
+<!--Date-->
+<mat-form-field>
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="picker1" formControlName="transaction_date" />
+    <mat-datepicker-toggle
+      matSuffix
+      [for]="picker1"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #picker1></mat-datepicker>
+  </mat-form-field>
+
+ 
+<!--Transaction Amount in Rupees-->
+
+  <mat-form-field>
+    <mat-label>Amount</mat-label>
+    <input
+      matInput
+      formControlName="amount"
+      type="number"
+      placeholder="0"
+    />
+    <span matPrefix>&#x20b9;&nbsp;</span>
+    <span matSuffix>.00</span>
+    <mat-error *ngIf="transactionForm.controls['amount'].hasError('required')"
+      >Please enter price</mat-error
+    >
+    <mat-error *ngIf="transactionForm.controls['amount'].hasError('min')"
+      >Please enter value greater than 1</mat-error
+    >
+  </mat-form-field>
+  <!--Submit Button-->
+
+  
+
+
+  <div mat-dialog-actions align="end" >
+    <button mat-button (click)="close()">Close</button>
+    <button
+    mat-button
+    style="background-color: #dcdcdc"
+    type="submit"
+    [disabled]="!transactionForm.valid"
+    (click)="submit()"
+    *ngIf="!addLoader"
+    
+  >
+    Submit
+  </button>
+  <button *ngIf="addLoader" mat-button [disabled]="true"><mat-spinner  diameter="20" ></mat-spinner></button>
+
+  </div>
+</form>

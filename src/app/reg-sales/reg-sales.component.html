@@ -20,6 +20,7 @@
       </button>
       -->
     </div>
+    <!--
     <h3
       class="mat-subheading-2"
       style="background-color: whitesmoke; border-radius: 3%;border:1px solid lightgray"
@@ -28,6 +29,10 @@
         >perm_identity</mat-icon
       ><span>&nbsp;{{ this.userdetails?.firstName | titlecase }}</span>
     </h3>
+-->
+    <app-customer-name
+      [firstName]="this.userdetails?.firstName"
+    ></app-customer-name>
 
     <form [formGroup]="salesForm">
       <mat-form-field>
@@ -90,7 +95,7 @@
         style="background-color: #dcdcdc"
         type="submit"
         [disabled]="!salesForm.valid"
-        (click)="edited?ModifiedSubmit():submit()"
+        (click)="edited ? ModifiedSubmit() : submit()"
         #salesSubmit
       >
         Submit
