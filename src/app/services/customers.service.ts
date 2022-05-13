@@ -7,6 +7,7 @@ import { GetItems } from '../interface/get-items';
 import { GetSales } from '../interface/get-sales';
 import { PostItems } from '../interface/post-items';
 import { PostSales } from '../interface/post-sales';
+import { PostTransaction } from '../interface/post-transaction';
 
 @Injectable({
   providedIn: 'root'
@@ -117,5 +118,9 @@ export class CustomersService {
 
   getTransByDateandID(userid:number,date:string){
     return this.http.get(`${environment.api_url}/price/controller/getDetails/dates/${userid}/${date}`);
+  }
+
+  postTransaction(data:PostTransaction){
+    return this.http.post(`${environment.api_url}/customer/payment`,JSON.stringify(data));
   }
 }

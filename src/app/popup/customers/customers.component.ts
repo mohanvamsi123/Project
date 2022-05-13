@@ -16,9 +16,9 @@ export class CustomersComponent implements OnInit {
   addLoader:boolean=false;
   constructor( public dialogRef: MatDialogRef<CustomersComponent>,
     @Inject(MAT_DIALOG_DATA) public data: CustomerPopup,private fb: FormBuilder,private customeraction:CustomersService) {
-      console.log(data);
-      console.log(data?.action)
-      console.log(data?.input);
+      //console.log(data);
+      //console.log(data?.action)
+      //console.log(data?.input);
       this.state=data?.action
       this.profile=data?.input
      }

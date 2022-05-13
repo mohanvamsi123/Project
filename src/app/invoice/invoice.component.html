@@ -2,7 +2,7 @@
   <div class="heading">
     <div>
       <address class="address mat-body" id="to">
-        <span class="mat-body-strong">SVF Flower Stall</span><br />
+        <span class="mat-body-strong">SVF FLOWER STALL</span><br />
         <span class="mat-body-strong">D.G.Prakash</span><br />
         Raitu Bazar<br />
         Near RTC Bust Stand<br />
@@ -13,17 +13,17 @@
       <address class="address mat-body" id="from">
         Bill To:<br />
         <span class="mat-body-strong" *ngIf="from?.firstName"
-          >{{ from?.firstName }}<br
+          >{{ from?.firstName | titlecase}}<br
         /></span>
         <span *ngIf="from.address.shopname"
-          >{{ from?.address?.shopname }}<br
+          >{{ from?.address?.shopname | titlecase}}<br
         /></span>
         <span *ngIf="from?.phone_no">+91 {{ from?.phone_no }}<br /></span>
-        <span *ngIf="from?.address?.city">{{ from?.address?.city }}<br /></span>
+        <span *ngIf="from?.address?.city">{{ from?.address?.city | titlecase}}<br /></span>
         <span *ngIf="from?.address?.state"
-          >{{ from?.address?.state }}<br
+          >{{ from?.address?.state | titlecase}}<br
         /></span>
-        <span *ngIf="from?.address?.country">{{ from?.address?.country }}</span>
+        <span *ngIf="from?.address?.country">{{ from?.address?.country | titlecase}}</span>
       </address>
     </div>
     <div>
@@ -51,7 +51,7 @@
   <div class="body">
     <table>
       <tr>
-        <!--<th>S.No.</th>-->
+        <th *ngIf="individualDates">S.No.</th>
         <th *ngIf="!individualDates">Date</th>
         <th>Item</th>
         <th>Quantity</th>
@@ -59,7 +59,7 @@
         <th>Amount</th>
       </tr>
       <tr class="mat-body" *ngFor="let item of itemsList;let sno=index;">
-        <!--<td>{{ sno+1 }}</td>-->
+        <td *ngIf="individualDates">{{ sno+1 }}</td>
         <td *ngIf="!individualDates">{{ item.date | date }}</td>
         <td>{{ item.name | titlecase}}</td>
         <td>{{ item.quantity }}</td>
@@ -86,7 +86,9 @@
       </table>
     </div>
   </div>
+  <!--
   <footer>
     <p>This is a computer generated invoice<br>
   </footer>
+  -->
 </div>
