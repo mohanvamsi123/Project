@@ -7,3 +7,8 @@ table {
 .col-md-2 {
   padding: 0px;
 }
+
+.transaction-col{
+  overflow-y: auto;
+  max-height: 83vh;
+}

@@ -37,6 +37,7 @@ export class PaymentPopupComponent implements OnInit {
     this.customeraction.postTransaction(this.transactionForm.value).subscribe((data:any)=>{
        console.log(data);
        this.addLoader = false;
+       this.dialogRef.close();
     });
   }
 

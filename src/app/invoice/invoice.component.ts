@@ -23,7 +23,7 @@ export class InvoiceComponent implements OnInit {
   }
 
   ngOnChanges(): void {
-    console.log(this.itemsList);
+    //console.log(this.itemsList);
 
     if (this.itemsList) {
       if (this.itemsList.length > 1) {
@@ -33,7 +33,7 @@ export class InvoiceComponent implements OnInit {
       } else {
         this.totalPrice = this.itemsList[0]?.quantity * this.itemsList[0]?.unit_cost;
       }
-      console.log(this.totalPrice);
+      //console.log(this.totalPrice);
 
     }
   }

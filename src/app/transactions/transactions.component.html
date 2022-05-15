@@ -10,17 +10,28 @@
   </button>
 </app-toolbar>
 <div class="container-fluid">
-<div class="row" style="min-height: 82vh;">
-  
-  <div class="col-md-2" >
-    <app-sale-dates [personId]="personId" (selectedDate)="fetchInvoiceData($event)"></app-sale-dates>
+  <div class="row">
+    <div class="col-md-2 transaction-col">
+      <app-sale-dates
+        [personId]="personId"
+        (selectedDate)="fetchInvoiceData($event)"
+      ></app-sale-dates>
+    </div>
+
+    <div class="col-md-7 transaction-col">
+      <app-invoice
+        [from]="userDetails"
+        [individualDates]="true"
+        [invoiceDate]="selectedDate"
+        [itemsList]="formattedItems"
+      ></app-invoice>
+    </div>
+
+    <div class="col-md-3 transaction-col">
+      <app-payment-history
+        [invoiceDate]="selectedDate"
+        [userId]="personId"
+      ></app-payment-history>
+    </div>
   </div>
-  
-  <div class="col-md-7" style="overflow-y: auto;">
-    <app-invoice [from]="userDetails" [individualDates]="true" [invoiceDate]="selectedDate"  [itemsList]="formattedItems"
-    ></app-invoice>
-  </div>
-  
-  
-</div>
 </div>
