@@ -1,0 +1,30 @@
+<mat-list>
+  <mat-list-item *ngFor="let transaction of getPayments$ | async">
+    <mat-icon
+      mat-list-icon
+      *ngIf="transaction.status == 'Debited'; else Credited"
+      style="color: green"
+      >call_made</mat-icon
+    >
+    <ng-template #Credited
+      ><mat-icon mat-list-icon style="color: red"
+        >call_received</mat-icon
+      ></ng-template
+    >
+    <div mat-line>{{ transaction.transaction_date | date }}</div>
+    <div mat-line>
+      <ng-container *ngIf="transaction.status == 'Debited'; else creditedAmount"
+        >Purchased for
+        <span style="color: green">{{
+          transaction.amount | currency: "INR":"symbol"
+        }}</span></ng-container
+      >
+      <ng-template #creditedAmount
+        >Paid you
+        <span style="color: red">{{
+          transaction.amount | currency: "INR":"symbol"
+        }}</span></ng-template
+      >
+    </div>
+  </mat-list-item>
+</mat-list>

@@ -14,6 +14,7 @@ import { PaymentPopupComponent } from './payment-popup/payment-popup.component';
 export class TransactionsComponent implements OnInit {
   currentDate = new Date();
   getDates$!: Observable<any>;
+  /*
   amount=2000;
   columnHeaders:Array<any>=["Transaction Date", "Type" , "Amount"];
   dataSource:Array<any>=[
@@ -27,7 +28,7 @@ export class TransactionsComponent implements OnInit {
       type:"Received",
       amount:"2000"
     }
-  ];
+  ];*/
   personId!: number;
   userDetails!: GetCustomer;
   formattedItems: Array<any>=[];

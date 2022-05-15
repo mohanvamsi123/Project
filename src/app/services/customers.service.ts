@@ -8,6 +8,7 @@ import { GetSales } from '../interface/get-sales';
 import { PostItems } from '../interface/post-items';
 import { PostSales } from '../interface/post-sales';
 import { PostTransaction } from '../interface/post-transaction';
+import { TransactionHistory } from '../interface/transaction-history';
 
 @Injectable({
   providedIn: 'root'
@@ -122,5 +123,9 @@ export class CustomersService {
 
   postTransaction(data:PostTransaction){
     return this.http.post(`${environment.api_url}/customer/payment`,JSON.stringify(data));
+  }
+
+  getPaymentHistory(date:string,userId:number){
+    return this.http.get<TransactionHistory[]>(`${environment.api_url}/customer/transactions/${userId}/${date}`);
   }
 }
