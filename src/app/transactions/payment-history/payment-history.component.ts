@@ -26,7 +26,6 @@ export class PaymentHistoryComponent implements OnInit {
   }
 
   getPayments(){
-    console.log("Hello");
    this.getPayments$=this.service.getPaymentHistory(this.invoiceDate,this.userId);
   }
 

@@ -8,6 +8,7 @@ import { GetSales } from '../interface/get-sales';
 import { PostItems } from '../interface/post-items';
 import { PostSales } from '../interface/post-sales';
 import { PostTransaction } from '../interface/post-transaction';
+import { PreviousBalance } from '../interface/previous-balance';
 import { TransactionHistory } from '../interface/transaction-history';
 
 @Injectable({
@@ -127,5 +128,10 @@ export class CustomersService {
 
   getPaymentHistory(date:string,userId:number){
     return this.http.get<TransactionHistory[]>(`${environment.api_url}/customer/transactions/${userId}/${date}`);
+  }
+
+  getPreviousBalance(date:string,userId:number){
+    return this.http.get<PreviousBalance>(`${environment.api_url}/customer/previousBalance/${userId}/${date}`);
+
   }
 }

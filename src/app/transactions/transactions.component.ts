@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { GetCustomer } from '../interface/get-customer';
+import { PreviousBalance } from '../interface/previous-balance';
 import { CustomersService} from '../services/customers.service';
 import { PaymentPopupComponent } from './payment-popup/payment-popup.component';
 
@@ -33,6 +34,10 @@ export class TransactionsComponent implements OnInit {
   userDetails!: GetCustomer;
   formattedItems: Array<any>=[];
   selectedDate!: string;
+  prevBalance!: number;
+  subscription!: Subscription;
+
+
   constructor(private route: ActivatedRoute,private service:CustomersService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -47,7 +52,7 @@ export class TransactionsComponent implements OnInit {
 
   fetchInvoiceData(selectedDate:string){
     this.selectedDate=selectedDate;
-    this.service.getTransByDateandID(this.personId,selectedDate).subscribe((items:any)=>{
+    this.subscription = this.service.getTransByDateandID(this.personId,selectedDate).subscribe((items:any)=>{
       let operationalArray=[];
       for(let item of items){
         operationalArray.push({
@@ -58,9 +63,16 @@ export class TransactionsComponent implements OnInit {
         });
       }
       this.formattedItems=operationalArray;
+      this.getPreviousBalance(this.personId,selectedDate);
     })
   }
 
+
+  getPreviousBalance(personId:number,selectedDate:string){
+    this.subscription = this.service.getPreviousBalance(selectedDate,personId).subscribe((data:PreviousBalance)=>{
+      this.prevBalance=data.previousBalance;
+    });
+  }
 
   payment_action = () => {
     const dialogRef = this.dialog.open(PaymentPopupComponent, {
@@ -77,5 +89,11 @@ export class TransactionsComponent implements OnInit {
       }
     });
 
+  }
+
+  ngOnDestroy(){
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
   }
 }
