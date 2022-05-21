@@ -24,6 +24,7 @@
         [individualDates]="true"
         [invoiceDate]="selectedDate"
         [itemsList]="formattedItems"
+        [prevBalance]="(prevBalance === null || prevBalance < 0 )? 0 : prevBalance"
       ></app-invoice>
     </div>
 
