@@ -19,32 +19,13 @@
     </div>
 
     <div class="col-md-7 transaction-col">
-      <div class="col-md-12">
-        <div class="invoice-action-panel">
-          <button
-            mat-icon-button
-            style="background-color: darkgrey"
-            aria-label="Download invoice"
-            printSectionId="print-section"
-            ngxPrint
-            [useExistingCss]="true"
-          >
-            <mat-icon>save_alt</mat-icon>
-          </button>
-        </div>
-      </div>
-      
-        <app-invoice
-          [from]="userDetails"
-          [individualDates]="true"
-          [invoiceDate]="selectedDate"
-          [itemsList]="formattedItems"
-          [prevBalance]="
-            prevBalance === null || prevBalance < 0 ? 0 : prevBalance
-          "
-          id="print-section"
-        ></app-invoice>
-      
+      <app-invoice
+        [from]="userDetails"
+        [individualDates]="true"
+        [invoiceDate]="selectedDate"
+        [itemsList]="formattedItems"
+        [prevBalance]="(prevBalance === null || prevBalance < 0 )? 0 : prevBalance"
+      ></app-invoice>
     </div>
 
     <div class="col-md-3 transaction-col">
