@@ -116,7 +116,7 @@
       </button>
     </app-toolbar>
 
-    <app-sales-table
+    <app-sales-table *ngIf="columnsDataArray.length>0;else emptyImage"
       [columnHeaders]="columnHeaderArray"
       [columnsData]="columnsDataArray"
       (itemsList)="generateInvoice($event)"
@@ -124,5 +124,8 @@
       (deleteList)="deleteSales($event)"
       (filterDate)="filterSalesByDate($event)"
     ></app-sales-table>
+    <ng-template #emptyImage>
+      <app-empty-state></app-empty-state>
+    </ng-template>
   </div>
 </mat-drawer-container>
