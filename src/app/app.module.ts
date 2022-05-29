@@ -45,6 +45,7 @@ import { SaleDatesComponent } from './transactions/sale-dates/sale-dates.compone
 import { PaymentPopupComponent } from './transactions/payment-popup/payment-popup.component';
 import { CustomerNameComponent } from './customer-name/customer-name.component';
 import { PaymentHistoryComponent } from './transactions/payment-history/payment-history.component';
+import { EmptyStateComponent } from './empty-state/empty-state.component';
 
 
 
@@ -68,7 +69,8 @@ import { PaymentHistoryComponent } from './transactions/payment-history/payment-
     SaleDatesComponent,
     PaymentPopupComponent,
     CustomerNameComponent,
-    PaymentHistoryComponent
+    PaymentHistoryComponent,
+    EmptyStateComponent
   ],
   imports: [
     BrowserModule,
